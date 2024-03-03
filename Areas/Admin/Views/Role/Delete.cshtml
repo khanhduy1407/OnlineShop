@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Xóa quyền";
+}
+<br />
+
+<h2 class="text-info">Xóa quyền</h2>
+<div class="ui segment">
+    <form asp-action="Delete" method="post" enctype="multipart/form-data" class="ui large form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h3>Bạn có chắc muốn xóa quyền này?</h3>
+        <div class="field">
+            <label>Tên quyền</label>
+            <input type="hidden" value="@ViewBag.id" name="id" />
+            <input id="name" name="name" value="@ViewBag.name" readonly />
+        </div>
+        <div class="field">
+            <button type="submit" class="ui inverted red button">Xóa</button>
+            <a asp-action="Index" class="ui inverted green button">Trở về</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

@@ -1,0 +1,48 @@
+﻿@using OnlineShop.Models;
+@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "Quản lý đơn hàng";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <table class="ui celled table">
+        <tr class="table-info">
+            <th>Mã đơn hàng</th>
+            <th>Ngày đặt</th>
+            <th>Tên khách hàng</th>
+            <th>Số điện thoại</th>
+            <th>Tình trạng đơn</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.OrderByDescending(o => o.OrderDate))
+        {
+            <tr>
+                <td>@item.OrderNo</td>
+                <td>@item.OrderDate.ToShortDateString()</td>
+                <td>@item.Name</td>
+                <td>@item.PhoneNo</td>
+                <td>@item.Status</td>
+                <td class="right aligned collapsing">
+                    <a asp-action="Details" class="btn btn-success" asp-route-id="@item.Id">
+                        <i class="fa-solid fa-list"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+@section scripts {
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var success = '@TempData["orderSuccess"]';
+            if (success != '') {
+                alertify.alert('Đặt hàng', success, null);
+            }
+        })
+    </script>
+}
+

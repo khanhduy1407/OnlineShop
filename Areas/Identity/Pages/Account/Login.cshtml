@@ -1,0 +1,87 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<h1 style="text-align: center;">@ViewData["Title"]</h1>
+<div class="ui centered grid">
+    <div class="column" style="max-width: 450px;">
+        <div class="ui segment">
+            <form id="account" method="post" class="ui large form">
+                <div class="field">
+                    <p style="text-align: center;">
+                        Bạn chưa có tài khoản? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Đăng ký ngay.</a>
+                    </p>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input asp-for="Input.Email" autocomplete="username" aria-required="true" placeholder="Địa chỉ Email" />
+                    </div>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input asp-for="Input.Password" autocomplete="current-password" aria-required="true" placeholder="Mật khẩu" />
+                    </div>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="field">
+                    <div class="ui grid">
+                        <div class="eight wide column">
+                            <div class="ui checkbox">
+                                <input asp-for="Input.RememberMe" />
+                                <label asp-for="Input.RememberMe">
+                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="eight wide column" style="text-align: right;">
+                            <a id="forgot-password" asp-page="./ForgotPassword">Quên mật khẩu?</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Gửi lại email xác minh?</a>
+                </div>
+                <button id="login-submit" type="submit" class="fluid ui large primary button">Đăng nhập</button>
+            </form>
+        </div>
+        <div class="ui segment">
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div class="field">
+                        <p>
+                            Không có dịch vụ xác thực bên ngoài nào được định cấu hình.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="ui large form">
+                        @foreach (var provider in Model.ExternalLogins!)
+                        {
+                            var brand = provider.Name.ToLower();
+                            <div class="field">
+                                <button type="submit" class="fluid ui large basic button" name="provider" value="@provider.Name">
+                                    <i class="icon @brand"></i>
+                                    Đăng nhập bằng @provider.DisplayName
+                                </button>
+                            </div>
+                        }
+                    </form>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

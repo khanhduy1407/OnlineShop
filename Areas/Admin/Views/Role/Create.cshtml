@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Tạo quyền";
+}
+<br />
+
+<h2 class="text-info">Thêm quyền mới</h2>
+<div class="ui segment">
+    <form asp-action="Create" method="post" enctype="multipart/form-data" class="ui large form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h3>@ViewBag.msg</h3>
+        <div class="field">
+            <label>Tên quyền</label>
+            <input id="name" name="name" value="@ViewBag.name" placeholder="Tên quyền" required autocomplete="off" />
+        </div>
+        <div class="field">
+            <button type="submit" class="ui inverted primary button">Thêm</button>
+            <a asp-action="Index" class="ui inverted green button">Trở về</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

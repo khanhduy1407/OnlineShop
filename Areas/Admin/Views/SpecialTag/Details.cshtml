@@ -1,0 +1,26 @@
+﻿@model OnlineShop.Models.SpecialTag
+@{
+    ViewData["Title"] = "Chi tiết thẻ";
+}
+<br />
+
+<h2 class="text-info">Chi tiết thẻ</h2>
+<div class="ui segment">
+    <form asp-action="Details" method="post" class="ui large form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="field">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" readonly="readonly" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="ui inverted primary button">Chỉnh sửa</a>
+            <a asp-action="Index" class="ui inverted green button">Trở về</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

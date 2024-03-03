@@ -1,0 +1,24 @@
+﻿@page
+@model Disable2faModel
+@{
+    ViewData["Title"] = "Tắt xác thực 2 yếu tố (2FA)";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h3>@ViewData["Title"]</h3>
+
+<div class="ui warning message" role="alert">
+    <div class="header">
+        Hành động này chỉ tắt 2FA.
+    </div>
+    <p>
+        Việc tắt 2FA không làm thay đổi các khóa được sử dụng trong ứng dụng xác thực. Nếu bạn muốn thay đổi
+        khóa được sử dụng trong ứng dụng xác thực, bạn nên
+        <a asp-page="./ResetAuthenticator">đặt lại khóa xác thực của bạn.</a>
+    </p>
+</div>
+
+<form method="post" class="ui large form">
+    <button class="ui large red button" type="submit">Tắt 2FA</button>
+</form>

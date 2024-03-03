@@ -1,0 +1,29 @@
+﻿@model OnlineShop.Models.ProductTypes
+@{
+    ViewData["Title"] = "Chi tiết loại sp";
+}
+
+<br/>
+
+<h2 class="text-info">Chi tiết loại sp</h2>
+<div class="ui segment">
+  <form asp-action="Details" method="post" class="ui large form">
+    <div asp-validation-summary="ModelOnly" class="text-danger">
+      <!---->
+    </div>
+    <div class="field">
+      <label asp-for="ProductType"></label>
+      <input asp-for="ProductType" readonly />
+      <span asp-validation-for="ProductType" class="text-danger"></span>
+    </div>
+    <div class="field">
+      <a asp-action="Edit" asp-route-id="@Model.Id" class="ui inverted primary button">Chỉnh sửa</a>
+      <a asp-action="Index" class="ui inverted green button">Trở về</a>
+    </div>
+  </form>
+</div>
+
+@section Scripts {
+  @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+

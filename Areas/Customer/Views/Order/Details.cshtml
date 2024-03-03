@@ -1,0 +1,124 @@
+﻿@model OnlineShop.Models.Order
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng";
+}
+
+@{
+    string GetStepStatus(string step)
+    {
+        if (Model.Status == "Đã đặt hàng")
+        {
+            return step == "Đã đặt hàng" ? "active" : "disabled";
+        }
+        else if (Model.Status == "Đang giao")
+        {
+            return step == "Đã đặt hàng" ? "completed" : (step == "Đang giao" ? "active" : "disabled");
+        }
+        else if (Model.Status == "Đã nhận")
+        {
+            return "completed";
+        }
+
+        return "completed";
+    }
+}
+
+<h1>@ViewData["Title"]</h1>
+<br />
+<a class="wwg medium text" href="javascript:history.back()"><i class="icon arrow left"></i> Quay lại</a>
+<div class="ui segment">
+    <p class="wwg medium text">
+        <b>Số đơn hàng:</b> @Model.OrderNo
+    </p>
+    <p class="wwg medium text">
+        <b>Họ tên:</b> @Model.Name
+    </p>
+    <p class="wwg medium text">
+        <b>Số điện thoại:</b> @Model.PhoneNo
+    </p>
+    <p class="wwg medium text">
+        <b>Email:</b> @Model.Email
+    </p>
+    <p class="wwg medium text">
+        <b>Địa chỉ nhận:</b> @Model.Address
+    </p>
+    <p class="wwg medium text">
+        <b>Ngày đặt:</b> @Model.OrderDate.ToShortDateString()
+    </p>
+    <p class="wwg red medium text">
+        <b>Tổng cộng:</b> $@Model.OrderDetails.Sum(c => c.Product.Price).ToString("#")
+    </p>
+    <p class="wwg medium text">
+        <b>Tình trạng đơn:</b>
+        <div class="ui tablet stackable ordered steps">
+            @if (Model.Status == "Đã hủy")
+            {
+                <div class="disabled step">
+                    <div class="content">
+                        <div class="title">Đã hủy</div>
+                        <div class="description">Đơn hàng này đã bị hủy</div>
+                    </div>
+                </div>
+            }
+            else if (Model.Status == "Không nhận")
+            {
+                <div class="disabled step">
+                    <i class="exclamation triangle orange icon"></i>
+                    <div class="content">
+                        <div class="title">Không nhận</div>
+                        <div class="description">Quý khách không nhận hàng sẽ được lưu ý!</div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="@GetStepStatus("Đã đặt hàng") step">
+                    <div class="content">
+                        <div class="title">Đã đặt hàng</div>
+                        <div class="description">Chủ shop đang sắp xếp hàng</div>
+                    </div>
+                </div>
+                <div class="@GetStepStatus("Đang giao") step">
+                    <div class="content">
+                        <div class="title">Đang giao</div>
+                        <div class="description">Đơn hàng đang đến tay bạn</div>
+                    </div>
+                </div>
+                <div class="@GetStepStatus("Đã nhận") step">
+                    <div class="content">
+                        <div class="title">Đã nhận</div>
+                        <div class="description">Cảm ơn quý khách</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </p>
+
+    <table class="ui celled padded table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã đơn</th>
+                <th>Sản phẩm</th>
+                <th>Tên sp</th>
+                <th>Giá</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderDetails)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.OrderId</td>
+                    <td>@item.ProductId</td>
+                    <td>
+                        <img src="@item.Product.Image" style="height: 50px; margin-right: 5px;" />
+                        @item.Product.Name
+                    </td>
+                    <td>$@item.Product.Price.ToString("#")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

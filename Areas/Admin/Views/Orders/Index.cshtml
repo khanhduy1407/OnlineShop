@@ -1,0 +1,65 @@
+﻿@using OnlineShop.Models;
+@model List<Order>
+@{
+    ViewData["Title"] = "Quản lý đơn hàng";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+  <a class="ui basic button" asp-area="Admin" asp-controller="Orders" asp-action="Index" asp-route-type="">Toàn bộ</a>
+  <a class="ui basic button" asp-area="Admin" asp-controller="Orders" asp-action="Index" asp-route-type="Đã đặt hàng">Đã đặt hàng</a>
+  <a class="ui basic button" asp-area="Admin" asp-controller="Orders" asp-action="Index" asp-route-type="Đang giao">Đang giao</a>
+  <a class="ui basic button" asp-area="Admin" asp-controller="Orders" asp-action="Index" asp-route-type="Đã nhận">Đã nhận</a>
+  <a class="ui basic button" asp-area="Admin" asp-controller="Orders" asp-action="Index" asp-route-type="Đã hủy">Đã hủy</a>
+  <a class="ui basic button" asp-area="Admin" asp-controller="Orders" asp-action="Index" asp-route-type="Không nhận">Không nhận</a>
+</div>
+
+<br />
+
+<div>
+    <table class="ui celled table" id="myTable">
+        <thead>
+        <tr class="table-info">
+            <th>Mã đơn hàng</th>
+            <th>Ngày đặt</th>
+            <th>Tên khách hàng</th>
+            <th>Số điện thoại</th>
+            <th>Tình trạng đơn</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(o => o.OrderDate))
+            {
+                <tr>
+                    <td class="center aligned collapsing">@item.OrderNo</td>
+                    <td class="center aligned collapsing">@item.OrderDate.ToShortDateString()</td>
+                    <td class="center aligned collapsing">@item.Name</td>
+                    <td class="center aligned collapsing">@item.PhoneNo</td>
+                    <td class="center aligned collapsing">@item.Status</td>
+                    <td class="center aligned collapsing">
+                        <a asp-action="Details" class="btn btn-success" asp-route-id="@item.Id">
+                            <i class="fa-solid fa-list"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts {
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        let table = new DataTable('#myTable');
+
+        $(function () {
+            var success = '@TempData["updateStatusSuccess"]';
+            if (success != '') {
+                alertify.alert('Cập nhật trạng thái đơn', success, null);
+            }
+        })
+    </script>
+}
+

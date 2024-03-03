@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Danh sách quyền";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Danh sách quyền</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="ui inverted primary button"><i class="fa-solid fa-plus"></i>&nbsp; Thêm quyền mới</a>
+    </div>
+</div>
+<br />
+<div>
+    <table class="ui celled table">
+        <tr class="table-info">
+            <th>Tên</th>
+            <th>Id</th>
+            <th></th>
+        </tr>
+        @foreach (var item in ViewBag.Roles)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Id</td>
+                <td class="right aligned collapsing">
+                    <div class="ui buttons">
+                        <a asp-action="Edit" class="ui inverted primary button" asp-route-id="@item.Id">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                        <a asp-action="Delete" class="ui inverted red button" asp-route-id="@item.Id">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+@section scripts {
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var save = '@TempData["save"]';
+            var update = '@TempData["update"]';
+            var remove = '@TempData["remove"]';
+            if (save != '') {
+                alertify.success(save);
+            }
+            if (update != '') {
+                alertify.success(update);
+            }
+            if (remove != '') {
+                alertify.error(remove);
+            }
+        })
+    </script>
+}
+

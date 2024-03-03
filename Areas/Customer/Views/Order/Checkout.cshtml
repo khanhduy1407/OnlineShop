@@ -1,0 +1,100 @@
+﻿@model OnlineShop.Models.Order
+@using System.Net.Http;
+@using OnlineShop.Utility;
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor;
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng";
+}
+@{
+    List<Products> products = HttpContextAccessor.HttpContext.Session.Get<List<Products>>("products");
+
+    if (products == null)
+    {
+        products = new List<Products>();
+    }
+}
+<br />
+
+<h2 class="text-info">Chi tiết đơn hàng</h2>
+<div class="ui segment">
+    <form asp-action="Checkout" method="post" enctype="multipart/form-data" class="ui large form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="ui two column stackable grid">
+            <div class="eight wide column">
+                <div class="field">
+                    <label asp-for="Name"></label>
+                    <input type="hidden" asp-for="Id" />
+                    <input asp-for="Name" placeholder="Họ tên" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="field">
+                    <label asp-for="PhoneNo"></label>
+                    <input asp-for="PhoneNo" placeholder="Số điện thoại" type="number" />
+                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                </div>
+                <div class="field">
+                    <label asp-for="Address"></label>
+                    <input asp-for="Address" placeholder="Địa chỉ" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="field">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" value="@ViewBag.UserEmail" readonly placeholder="Địa chỉ Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="field">
+                    <label asp-for="OrderDate"></label>
+                    <input asp-for="Status" value="Đã đặt hàng" type="hidden" />
+                    <input asp-for="OrderDate" value="@DateTime.Today.ToString("yyyy-MM-dd")" placeholder="Ngày đặt hàng" readonly type="date" />
+                    <span asp-validation-for="OrderDate" class="text-danger"></span>
+                </div>
+                <button type="submit" class="fluid ui large primary button">Đặt hàng</button>
+            </div>
+            <div class="eight wide column">
+                <div class="text-right">
+                    <h3>Tổng cộng: $@products.Sum(c => c.Price).ToString("#")</h3>
+                </div>
+                <table class="ui celled table mt-3">
+                    <thead>
+                        <tr>
+                            <th>Hình ảnh</th>
+                            <th>Tên</th>
+                            <th>Giá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in products)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@item.Image" style="height: 100px;" />
+                                </td>
+                                <td>@item.Name</td>
+                                <td>$@item.Price.ToString("#")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // $(document).ready(function () {
+        //     $("#OrderDate").datepicker({
+        //         showAnim: "slideDown",
+        //         changeMonth: true,
+        //         changeYear: true
+        //     });
+        // });
+    </script>
+}
+
+

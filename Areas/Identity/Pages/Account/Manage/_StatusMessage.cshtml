@@ -1,0 +1,12 @@
+﻿@model string
+
+@if (!String.IsNullOrEmpty(Model))
+{
+    var statusMessageClass = Model.StartsWith("Error") ? "error" : "green";
+    <div class="ui @statusMessageClass message" role="alert">
+        <i class="close icon"></i>
+        <p>
+            @Model
+        </p>
+    </div>
+}

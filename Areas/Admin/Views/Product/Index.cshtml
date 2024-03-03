@@ -1,0 +1,103 @@
+﻿@using OnlineShop.Models;
+@model IEnumerable<Products>
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+}
+
+<br/><br/>
+<div class="row">
+  <div class="col-6">
+        <h2 class="text-info">Danh sách sản phẩm</h2>
+  </div>
+  <div class="col-6 text-right">
+    <a asp-action="Create" class="ui inverted teal button"><i class="fa-solid fa-plus"></i>&nbsp; Thêm sản phẩm mới</a>
+  </div>
+</div>
+<form method="post" class="ui large form">
+    <div class="inline fields">
+    <div class="three wide field">
+      <input type="number" name="lowAmount" placeholder="Giá từ" />
+    </div>
+    <div class="three wide field">
+      <input type="number" name="largeAmount" placeholder="Đến giá" />
+    </div>
+    <div class="three wide field">
+            <input type="submit" value="Tìm kiếm" class="ui inverted primary button" />
+    </div>
+    <div class="three wide field"></div>
+  </div>
+</form>
+<br/>
+<div>
+    <table class="ui celled table" id="myTable">
+    <thead>
+      <tr class="table-info">
+        <th>
+            @Html.DisplayNameFor(c => c.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(c => c.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(c => c.ProductColor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(c => c.IsAvailable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(c => c.ProductTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(c => c.SpecialTagId)
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @foreach (var item in Model)
+      {
+          <tr>
+              <td>@item.Name</td>
+              <td>@item.Price</td>
+              <td>@item.ProductColor</td>
+              <td>@item.IsAvailable</td>
+              <td>@item.ProductTypes.ProductType</td>
+              <td>@item.SpecialTag.Name</td>
+              <td class="center aligned collapsing">
+                  <partial name="_ButtonPartial" model="@item.Id" />
+              </td>
+          </tr>
+      }
+    </tbody>
+    </table>
+</div>
+
+@section scripts {
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+  <script type="text/javascript">
+      let table = new DataTable('#myTable', {
+        layout: {
+            topStart: {
+                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+            }
+        }
+      });
+
+    $(function() {
+        var save = '@TempData["save"]';
+        var update = '@TempData["update"]';
+        var remove = '@TempData["remove"]';
+        if (save != '') {
+          alertify.success(save);
+        }
+        if (update != '') {
+          alertify.success(update);
+        }
+        if (remove != '') {
+          alertify.error(remove);
+        }
+    })
+  </script>
+}
+

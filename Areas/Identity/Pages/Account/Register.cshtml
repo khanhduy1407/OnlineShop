@@ -1,0 +1,83 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<h1 style="text-align: center;">@ViewData["Title"]</h1>
+
+<div class="ui centered grid">
+    <div class="column" style="max-width: 450px;">
+        <div class="ui segment">
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="ui large form">
+                <div class="field">
+                    <p style="text-align: center;">
+                        Bạn đã có tài khoản? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Đăng nhập.</a>
+                    </p>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input asp-for="Input.Email" autocomplete="username" aria-required="true" placeholder="Địa chỉ Email" />
+                    </div>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input asp-for="Input.Password" autocomplete="new-password" aria-required="true" placeholder="Mật khẩu" />
+                    </div>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input asp-for="Input.ConfirmPassword" autocomplete="new-password" aria-required="true" placeholder="Xác nhận mật khẩu" />
+                    </div>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button id="registerSubmit" type="submit" class="fluid ui large primary button">Đăng ký</button>
+            </form>
+            <div class="ui horizontal divider header">
+                Hoặc
+            </div>
+            <p>
+                Sử dụng dịch vụ bên thứ 3 để đăng nhập.
+            </p>
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div class="field">
+                        <p>
+                            Không có dịch vụ xác thực bên ngoài nào được định cấu hình.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="ui large form">
+                        <div class="field">
+                            <div class="ui center aligned grid">
+                                <div class="column">
+                                    @foreach (var provider in Model.ExternalLogins!)
+                                    {
+                                        var brand = provider.Name.ToLower();
+                                        <button type="submit" class="ui icon large basic button ml-3 mr-3" name="provider" value="@provider.Name">
+                                            <i class="icon @brand"></i>
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

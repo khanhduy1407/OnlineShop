@@ -1,0 +1,33 @@
+﻿@page
+@model DeletePersonalDataModel
+@{
+    ViewData["Title"] = "Xóa dữ liệu cá nhân";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+<h3>@ViewData["Title"]</h3>
+
+<div class="ui warning message" role="alert">
+    <div class="header">
+        Xóa dữ liệu này sẽ xóa vĩnh viễn tài khoản của bạn và không thể khôi phục dữ liệu này.
+    </div>
+</div>
+
+<div>
+    <form id="delete-user" method="post" class="ui large form">
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+        @if (Model.RequirePassword)
+        {
+            <div class="field">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" autocomplete="current-password" aria-required="true" placeholder="Nhập mật khẩu của bạn." />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+        }
+        <button class="fluid ui large red button" type="submit">Xóa dữ liệu và đóng tài khoản của tôi</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,29 @@
+﻿@model OnlineShop.Models.ProductTypes
+@{
+    ViewData["Title"] = "Thêm loại sản phẩm";
+}
+
+<br/>
+
+<h2 class="text-info">Thêm loại sản phẩm</h2>
+<div class="ui segment">
+  <form asp-action="Create" method="post" class="ui large form">
+    <div asp-validation-summary="ModelOnly" class="text-danger">
+      <!---->
+    </div>
+    <div class="field">
+      <label asp-for="ProductType"></label>
+      <input asp-for="ProductType" placeholder="Tên loại sản phẩm" autocomplete="off" />
+      <span asp-validation-for="ProductType" class="text-danger"></span>
+    </div>
+    <div class="field">
+      <button type="submit" class="ui inverted primary button">Thêm</button>
+      <a asp-action="Index" class="ui inverted green button">Trở về</a>
+    </div>
+  </form>
+</div>
+
+@section Scripts {
+  @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+

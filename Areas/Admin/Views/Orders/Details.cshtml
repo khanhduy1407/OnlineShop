@@ -1,0 +1,75 @@
+﻿@model OnlineShop.Models.Order
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng";
+}
+
+<h1>@ViewData["Title"]</h1>
+<br />
+<a class="wwg medium text" href="javascript:history.back()"><i class="icon arrow left"></i> Quay lại</a>
+<div class="ui segment">
+    <p class="wwg medium text">
+        <b>Số đơn hàng:</b> @Model.OrderNo
+    </p>
+    <p class="wwg medium text">
+        <b>Họ tên:</b> @Model.Name
+    </p>
+    <p class="wwg medium text">
+        <b>Số điện thoại:</b> @Model.PhoneNo
+    </p>
+    <p class="wwg medium text">
+        <b>Email:</b> @Model.Email
+    </p>
+    <p class="wwg medium text">
+        <b>Địa chỉ nhận:</b> @Model.Address
+    </p>
+    <p class="wwg medium text">
+        <b>Ngày đặt:</b> @Model.OrderDate.ToShortDateString()
+    </p>
+    <p class="wwg red medium text">
+        <b>Tổng cộng:</b> $@Model.OrderDetails.Sum(c => c.Product.Price).ToString("#")
+    </p>
+    <div class="ui segment">
+        <form asp-action="Details" method="post" enctype="multipart/form-data" class="ui large form">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="OrderNo" />
+            <input type="hidden" asp-for="Name" />
+            <input type="hidden" asp-for="PhoneNo" />
+            <input type="hidden" asp-for="Email" />
+            <input type="hidden" asp-for="Address" />
+            <input type="hidden" asp-for="OrderDate" />
+            <div class="field">
+                <label asp-for="Status"></label>
+                <select asp-for="Status" asp-items="@ViewBag.ListStatus"></select>
+            </div>
+            <button type="submit" class="ui large green button">Cập nhật</button>
+        </form>
+    </div>
+
+    <table class="ui celled padded table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã đơn</th>
+                <th>Sản phẩm</th>
+                <th>Tên sp</th>
+                <th>Giá</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderDetails)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.OrderId</td>
+                    <td>@item.ProductId</td>
+                    <td>
+                        <img src="@item.Product.Image" style="height: 50px; margin-right: 5px;" />
+                        @item.Product.Name
+                    </td>
+                    <td>$@item.Product.Price.ToString("#")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

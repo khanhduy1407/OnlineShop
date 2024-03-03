@@ -1,0 +1,50 @@
+﻿@page
+@model LoginWith2faModel
+@{
+    ViewData["Title"] = "2FA Checkpoint";
+}
+
+<h1 style="text-align: center;">@ViewData["Title"]</h1>
+<div class="ui centered grid">
+    <div class="column" style="max-width: 450px;">
+        <div class="ui segment">
+            <form method="post" asp-route-returnUrl="@Model.ReturnUrl" class="ui large form">
+                <div class="field">
+                    <a asp-page="./Login"><i class="icon arrow left"></i>Quay lại</a>
+                </div>
+                <div class="field">
+                    <p>Thông tin đăng nhập của bạn được bảo vệ bằng ứng dụng xác thực. Nhập mã xác thực của bạn bên dưới.</p>
+                </div>
+                <input asp-for="RememberMe" type="hidden" />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="field">
+                    <label asp-for="Input.TwoFactorCode"></label>
+                    <input asp-for="Input.TwoFactorCode" autocomplete="off" />
+                    <span asp-validation-for="Input.TwoFactorCode" class="text-danger"></span>
+                </div>
+                <div class="checkbox mb-3">
+                    <div class="ui checkbox">
+                        <input asp-for="Input.RememberMachine" />
+                        <label asp-for="Input.RememberMachine">
+                            @Html.DisplayNameFor(m => m.Input.RememberMachine)
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="fluid ui large primary button">Xác minh</button>
+                </div>
+            </form>
+        </div>
+        <div class="ui segment">
+            <p>
+                Bạn không có quyền truy cập vào thiết bị xác thực của mình? Bạn có thể
+                <a id="recovery-code-login" asp-page="./LoginWithRecoveryCode" asp-route-returnUrl="@Model.ReturnUrl">xác minh bằng mã khôi phục</a>.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

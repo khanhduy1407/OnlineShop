@@ -1,0 +1,26 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Hồ sơ cá nhân";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<h3>@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+<form id="profile-form" method="post" class="ui large form">
+    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+    <div class="field">
+        <label asp-for="Username"></label>
+        <input asp-for="Username" placeholder="Vui lòng chọn tên người dùng của bạn." disabled />
+    </div>
+    <div class="field">
+        <label asp-for="Input.PhoneNumber"></label>
+        <input asp-for="Input.PhoneNumber" placeholder="Vui lòng nhập số điện thoại của bạn." />
+        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+    </div>
+    <button id="update-profile-button" type="submit" class="fluid ui large primary button">Lưu</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,103 @@
+﻿@model OnlineShop.Models.Products
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+}
+
+@using System.Net.Http;
+@using OnlineShop.Utility;
+@using Microsoft.AspNetCore.Http;
+
+@inject IHttpContextAccessor HttpContextAccessor;
+
+@{
+    List<Products> products = HttpContextAccessor.HttpContext.Session.Get<List<Products>>("products");
+    Products product = null;
+    if (products != null)
+    {
+        product = products.FirstOrDefault(p => p.Id == Model.Id);
+    }
+}
+
+<br />
+
+<h2 class="text-info">Chi tiết sản phẩm</h2>
+<form asp-action="Detail" method="post" enctype="multipart/form-data">
+    <div class="field">
+        <a href="javascript:history.back()"><i class="icon arrow left"></i> Quay lại</a>
+    </div>
+    <div class="field">
+        <div class="ui large breadcrumb">
+            <a class="section" asp-action="Index">Trang chủ</a>
+            <div class="divider"> / </div>
+            <a class="section">@Model.ProductTypes.ProductType</a>
+            <div class="divider"> / </div>
+            <div class="active section">@Model.Name</div>
+        </div>
+    </div>
+    <br />
+    <div class="ui two column stackable grid">
+        <div class="six wide column">
+            <img id="previewImage" src="@Model.Image" alt="Preview" class="ui large bordered image" />
+        </div>
+        <div class="ten wide column">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Name" type="hidden" readonly class="form-control" />
+            <input asp-for="Price" type="hidden" readonly class="form-control" />
+            <input asp-for="ProductColor" type="hidden" readonly class="form-control" />
+            <input asp-for="ProductTypeId" type="hidden" readonly class="form-control" />
+            <h1>@Model.Name</h1>
+            <p class="wwg red large text">
+                <i class="tags icon"></i> $@Model.Price.ToString("#")
+            </p>
+            <table class="ui very basic large table">
+                <tbody>
+                    <tr>
+                        <td class="wwg bold font">Mã sản phẩm</td>
+                        <td class="right aligned">@Model.Id</td>
+                    </tr>
+                    <tr>
+                        <td class="wwg bold font">Màu sắc</td>
+                        <td class="right aligned">@Model.ProductColor</td>
+                    </tr>
+                    <tr>
+                        <td class="wwg bold font">Danh mục</td>
+                        <td class="right aligned">@Model.ProductTypes.ProductType</td>
+                    </tr>
+                    <tr>
+                        <td class="wwg bold font">Thẻ</td>
+                        <td class="right aligned">@Model.SpecialTag.Name</td>
+                    </tr>
+                    <tr>
+                        <td class="wwg bold font">Trạng thái kho</td>
+                        <td class="right aligned">
+                            @if (Model.IsAvailable)
+                            {
+                                <span>Còn hàng</span>
+                            }
+                            else
+                            {
+                                <span>Hết hàng</span>
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            @if (product != null)
+            {
+                <button type="submit" class="fluid ui large red button" asp-action="Remove" asp-route-id="@Model.Id">Xóa khỏi Giỏ hàng</button>
+            }
+            else
+            {
+                <button type="submit" @(Model.IsAvailable ? "" : "disabled") class="fluid ui large primary button">Thêm vào Giỏ hàng</button>
+            }
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

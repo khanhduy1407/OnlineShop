@@ -1,0 +1,134 @@
+﻿@using System.Net.Http;
+@using OnlineShop.Utility;
+@using Microsoft.AspNetCore.Http;
+
+@inject IHttpContextAccessor HttpContextAccessor;
+
+@{
+    var userRole = HttpContextAccessor.HttpContext.Session.GetString("roleName");
+    int count = 0;
+    List<Products> products = HttpContextAccessor.HttpContext.Session.Get<List<Products>>("products");
+    if (products == null)
+    {
+        products = new List<Products>();
+    }
+    count = products.Count();
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WWGrocery</title>
+    <link rel="icon" href="~/Images/logo.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OnlineShop.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.0/css/buttons.dataTables.css" type="text/css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link href="~/lib/semantic/semantic.min.css" rel="stylesheet" />
+    <link href="~/css/semantic-custom.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="ui vertical bottom sidebar menu">
+        <a class="item" asp-area="" asp-controller="Home" asp-action="Index">
+            Trang chủ
+        </a>
+        @if (userRole == "Admin")
+        {
+            <a class="item" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">Loại sản phẩm</a>
+            <a class="item" asp-area="Admin" asp-controller="SpecialTag" asp-action="Index">Thẻ</a>
+            <a class="item" asp-area="Admin" asp-controller="Product" asp-action="Index">Sản phẩm</a>
+        }
+        <partial name="_LoginMobileMenuPartial" />
+    </div>
+
+    <div class="pusher">
+        <div class="ui large borderless fixed menu">
+            <div class="item logo">
+                <img src="/images/logo.png">&nbsp;&nbsp; <b>WWGrocery</b>
+            </div>
+            <a class="item" asp-area="" asp-controller="Home" asp-action="Index">
+                Trang chủ
+            </a>
+            @if (userRole == "Admin")
+            {
+                <a class="item" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">Loại sản phẩm</a>
+                <a class="item" asp-area="Admin" asp-controller="SpecialTag" asp-action="Index">Thẻ</a>
+                <a class="item" asp-area="Admin" asp-controller="Product" asp-action="Index">Sản phẩm</a>
+            }
+            <div class="right menu">
+                <div class="ui item icon top left pointing hamberger button">
+                    <i class="large sidebar icon"></i>
+                </div>
+                <div class="item">
+                    <form method="post" onsubmit="return handleSearchSubmit();" class="ui form">
+                        <div class="ui icon input">
+                            <input type="text" id="searchInput" placeholder="Tìm sản phẩm...">
+                            <i class="search link icon" onclick="handleSearchSubmit()"></i>
+                        </div>
+                    </form>
+                </div>
+                <div class="item">
+                    <div class="ui compact menu">
+                        <a class="item" asp-area="Customer" asp-controller="Home" asp-action="Cart">
+                            <i class="shopping basket icon"></i> Giỏ hàng
+                            <div class="floating ui blue label">@count</div>
+                        </a>
+                    </div>
+                </div>
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+
+        <div class="ui main container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="ui footer segment">
+            <div class="container">
+                &copy; 2024 - WWGrocery - <a asp-area="" asp-controller="Home" asp-action="Privacy">Chính sách</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.0/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.print.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/semantic/semantic.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        function handleSearchSubmit() {
+            var searchInputValue = document.getElementById('searchInput').value;
+
+            // Check if the current page is the homepage or not
+            var isHomePage = window.location.pathname === "/";
+
+            // Construct the new URL with the 's' parameter
+            var newUrl = isHomePage ? window.location.pathname + "?s=" + encodeURIComponent(searchInputValue) : "/?s=" + encodeURIComponent(searchInputValue);
+
+            // Redirect to the new URL
+            window.location.href = newUrl;
+
+            // Prevent the form from submitting in the traditional way
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿@model OnlineShop.Areas.Admin.Models.RoleUserVm
+@{
+    ViewData["Title"] = "Phân quyền";
+}
+<br />
+
+<h2 class="text-info">Phân quyền</h2>
+<div class="ui segment">
+    <form asp-action="Assign" method="post" enctype="multipart/form-data" class="ui large form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h3>@ViewBag.msg</h3>
+        <div class="field">
+            <label asp-for="UserId"></label>
+            <select asp-for="UserId" asp-items="ViewBag.UserId"></select>
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <label asp-for="RoleId"></label>
+            <select asp-for="RoleId" asp-items="ViewBag.RoleId"></select>
+            <span asp-validation-for="RoleId" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <button type="submit" class="ui inverted primary button">Gắn quyền</button>
+            <a asp-action="Index" class="ui inverted green button">Trở về</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

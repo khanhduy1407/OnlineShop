@@ -1,0 +1,16 @@
+﻿@model int
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div class="ui buttons">
+  <a asp-action="Edit" class="ui inverted primary button" asp-route-id="@Model">
+    <i class="fa-regular fa-pen-to-square"></i>
+  </a>
+  <a asp-action="Details" class="ui inverted green button" asp-route-id="@Model">
+    <i class="fa-solid fa-list"></i>
+  </a>
+  <a asp-action="Delete" class="ui inverted red button" asp-route-id="@Model">
+    <i class="fa-regular fa-trash-can"></i>
+  </a>
+</div>

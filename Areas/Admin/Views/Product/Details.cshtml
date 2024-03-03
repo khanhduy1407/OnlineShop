@@ -1,0 +1,58 @@
+﻿@model OnlineShop.Models.Products
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+}
+<br />
+
+<h2 class="text-info">Chi tiết sản phẩm</h2>
+<div class="ui segment">
+    <form asp-action="" method="post" enctype="multipart/form-data" class="ui large form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="field">
+            <label asp-for="Name"></label>
+            <input type="hidden" asp-for="Id" />
+            <input asp-for="Name" readonly />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" readonly type="number" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <img id="previewImage" src="@Model.Image" alt="Preview" class="ui centered medium rounded bordered image" />
+        </div>
+        <div class="field">
+            <label asp-for="ProductColor"></label>
+            <input asp-for="ProductColor" readonly />
+            <span asp-validation-for="ProductColor" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <label asp-for="ProductTypeId"></label>
+            <input asp-for="ProductTypeId" readonly />
+            <span asp-validation-for="ProductTypeId" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <label asp-for="SpecialTagId"></label>
+            <input asp-for="SpecialTagId" readonly />
+            <span asp-validation-for="SpecialTagId" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <label asp-for="IsAvailable"></label>
+            <input asp-for="IsAvailable" readonly onclick="return false" type="checkbox" />
+            <span asp-validation-for="IsAvailable" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="ui inverted primary button">Chỉnh sửa</a>
+            <a asp-action="Index" class="ui inverted green button">Trở về</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
+
+

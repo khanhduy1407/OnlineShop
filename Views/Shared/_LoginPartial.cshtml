@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@using System.Net.Http;
+@using OnlineShop.Utility;
+@using Microsoft.AspNetCore.Http;
+
+@inject IHttpContextAccessor HttpContextAccessor;
+
+@{
+    int count = 0;
+    List<Products> products = HttpContextAccessor.HttpContext.Session.Get<List<Products>>("products");
+    if (products == null)
+    {
+        products = new List<Products>();
+    }
+    count = products.Count();
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="ui item icon top left pointing dropdown button">
+        <i class="user icon"></i>
+        <div class="menu">
+            <div class="header">@User.Identity?.Name</div>
+            <a class="item" style="display: flex; justify-content: space-between" asp-area="Customer" asp-controller="Home" asp-action="Cart">
+                Giỏ hàng
+                <div>
+                    <div class="ui blue circular label">@count</div>
+                </div>
+            </a>
+            <a class="item" asp-area="Customer" asp-controller="Order" asp-action="Index">
+                Đơn hàng của bạn
+            </a>
+
+            <div class="ui divider"></div>
+
+            <div class="header">Tài khoản</div>
+            <a class="item" asp-area="Identity" asp-page="/Account/Manage/Index">
+                Hồ sơ cá nhân
+            </a>
+            <a class="item" class="item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                Đăng xuất
+            </a>
+        </div>
+    </div>
+}
+else
+{
+    <a class="ui item" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a>
+    <div class="ui item">
+        <a class="ui green button" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a>
+    </div>
+}

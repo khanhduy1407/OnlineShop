@@ -1,0 +1,98 @@
+﻿@model OnlineShop.Models.Products
+@{
+    ViewData["Title"] = "Thêm sản phẩm";
+}
+<br />
+
+<h2 class="text-info">Thêm sản phẩm mới</h2>
+<div class="ui segment">
+    <form asp-action="Create" method="post" enctype="multipart/form-data" class="ui large form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h3>@ViewBag.message</h3>
+        <div class="field">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" placeholder="Tên sản phẩm" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" placeholder="Giá" type="number" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Image"></label>
+            <input type="file" id="fileInput" />
+            <input asp-for="Image"
+                    value="https://img.freepik.com/free-vector/image-folder-concept-illustration_114360-114.jpg"
+                    type="hidden"
+                    id="imageUrlInput" />
+            <img id="previewImage" src="" alt="Preview" class="ui centered medium rounded bordered image" style="display:none; margin-top: 10px;" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <label asp-for="ProductColor"></label>
+            <input asp-for="ProductColor" />
+            <span asp-validation-for="ProductColor" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <label asp-for="ProductTypeId"></label>
+            <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeList"></select>
+            <span asp-validation-for="ProductTypeId" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <label asp-for="SpecialTagId"></label>
+            <select asp-for="SpecialTagId" asp-items="ViewBag.tagList"></select>
+            <span asp-validation-for="SpecialTagId" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <label asp-for="IsAvailable"></label>
+            <div class="ui checkbox">
+                <input asp-for="IsAvailable" type="checkbox">
+                <label>Sản phẩm có sẵn</label>
+            </div>
+            <span asp-validation-for="IsAvailable" class="text-danger"></span>
+        </div>
+        <div class="field">
+            <button type="submit" class="ui inverted primary button">Thêm</button>
+            <a asp-action="Index" class="ui inverted green button">Trở về</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script>
+    document.getElementById('fileInput').addEventListener('change', function (event) {
+        var fileInput = event.target;
+        var file = fileInput.files[0];
+
+        // Check if a file is selected
+        if (file) {
+            var formData = new FormData();
+            formData.append('file', file);
+
+            // Perform AJAX request to upload file
+            fetch('/Admin/Product/UploadFile', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Update the hidden input with the file URL
+                    document.getElementById('imageUrlInput').value = data.fileUrl;
+
+                    document.getElementById('previewImage').src = data.fileUrl;
+                    document.getElementById('previewImage').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error uploading file:', error);
+                });
+        }
+    });
+</script>
+
+

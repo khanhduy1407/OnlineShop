@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Danh sách phân quyền";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Danh sách phân quyền</h2>
+    </div>
+</div>
+<br />
+<div>
+    <table class="ui celled table">
+        <tr class="table-info">
+            <th>
+                Người dùng
+            </th>
+            <th>Quyền</th>
+        </tr>
+        @foreach (var item in ViewBag.UserRoles)
+        {
+            <tr>
+                <td>@item.UserName</td>
+                <td>@item.RoleName</td>
+            </tr>
+        }
+    </table>
+</div>
+
+@section scripts {
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var save = '@TempData["save"]';
+            var update = '@TempData["update"]';
+            var remove = '@TempData["remove"]';
+            if (save != '') {
+                alertify.success(save);
+            }
+            if (update != '') {
+                alertify.success(update);
+            }
+            if (remove != '') {
+                alertify.error(remove);
+            }
+        })
+    </script>
+}
+
