@@ -130,5 +130,34 @@
             return false;
         }
     </script>
+
+
+    <div class="lastDiv"></div>
+    <script>
+        $(document).ready(function () {
+            $("#lastDiv").nextAll("center").remove();
+            $("center a[href='http://somee.com']").parent().css("display","none");
+            setTimeout(function () {
+                $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                $("#lastDiv").nextAll("div").remove();
+            }, 200);
+            setTimeout(function () {
+                $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                $("#lastDiv").nextAll("div").remove();
+            }, 300);
+            setTimeout(function () {
+                $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                $("#lastDiv").nextAll("div").remove();
+            }, 500);
+            setTimeout(function () {
+                $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                $("#lastDiv").nextAll("div").remove();
+            }, 1500);
+            setTimeout(function () {
+                $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                $("#lastDiv").nextAll("div").remove();
+            }, 3000);
+        })
+    </script>
 </body>
 </html>
