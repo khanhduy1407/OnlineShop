@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Điều khoản và điều kiện sử dụng";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div id="markdown-container" class="wwg medium text">
+</div>
+
+@section Scripts {
+
+    <script type="module">
+        import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
+        import { gfmHeadingId } from "https://cdn.jsdelivr.net/npm/marked-gfm-heading-id/+esm";
+
+        const options = {
+            prefix: "wwg-",
+        };
+
+        marked.use(gfmHeadingId(options));
+
+        document.getElementById('markdown-container').innerHTML = marked(`
+Chào mừng bạn đến với website của chúng tôi. Nếu bạn tiếp tục duyệt và sử dụng website này, bạn đồng ý tuân theo và bị ràng buộc bởi các điều khoản và điều kiện sử dụng, được liệt kê dưới đây, cùng với tất cả các luật pháp liên quan có hiệu lực. Nếu bạn không đồng ý với bất kỳ điều khoản nào trong các điều khoản này, bạn không được phép sử dụng hoặc truy cập website này. Các thuật ngữ "chúng tôi", "của chúng tôi" và "chủ sở hữu" được sử dụng trong điều khoản này đề cập đến chủ sở hữu website. Các thuật ngữ "bạn" và "của bạn" được sử dụng trong điều khoản này đề cập đến người dùng hoặc khách truy cập của website.
+
+---
+
+## 1. Điều khoản
+
+Bằng cách truy cập website này, bạn đồng ý tuân theo các điều khoản sử dụng, tất cả các luật pháp và quy định liên quan, và đồng ý rằng bạn có trách nhiệm tuân thủ bất kỳ luật pháp địa phương nào có hiệu lực. Nếu bạn không đồng ý với bất kỳ điều khoản nào trong các điều khoản này, bạn bị cấm sử dụng hoặc truy cập website này. Các vật liệu được bảo vệ bởi luật bản quyền và luật thương hiệu.
+
+## 2. Sử dụng giấy phép
+
+Được phép tạm thời tải xuống một bản sao của các vật liệu (thông tin hoặc phần mềm) trên website của chúng tôi cho sử dụng cá nhân, phi thương mại tạm thời. Đây là cấp phép cấp dưới giấy phép, không phải chuyển giao quyền sở hữu, và dưới giấy phép này, bạn không được phép:
+
+- sửa đổi hoặc sao chép các vật liệu;
+- sử dụng vật liệu cho bất kỳ mục đích thương mại hoặc cho bất kỳ hiển thị công cộng (thương mại hoặc phi thương mại);
+- cố gắng sao chép, sao chép lại hoặc tái tạo các phần mềm được bao gồm trong website của chúng tôi;
+- xóa bất kỳ thông báo bản quyền hoặc các thông báo về sở hữu khác từ các vật liệu; hoặc
+- chuyển giao các vật liệu cho một người khác hoặc "phản chiếu" các vật liệu trên bất kỳ máy chủ nào khác.
+
+Giấy phép này sẽ tự động chấm dứt nếu bạn vi phạm bất kỳ hạn chế nào và có thể bị chấm dứt bởi chúng tôi bất cứ lúc nào. Khi kết thúc xem các vật liệu này hoặc khi giấy phép này bị chấm dứt, bạn phải xóa tất cả các vật liệu đã tải xuống trong bất kỳ dạng nào đó.
+
+## 3. Tuyên bố bảo hộ
+
+Vật liệu trên website của chúng tôi được cung cấp "như nhau". Chúng tôi không đưa ra bất kỳ bảo đảm, bày tỏ hoặc ngụ ý, và bởi đây từ chối và bác bỏ tất cả các bảo đảm khác, bao gồm mà không giới hạn, các bảo đảm hoặc điều kiện ngụ ý về tính chất thương mại, tính thích hợp cho một mục đích cụ thể, hoặc vi phạm bản quyền hoặc vi phạm quyền sở hữu trí tuệ hoặc các quyền khác của vi phạm. Ngoài ra, chúng tôi không đưa ra bất kỳ tuyên bố nào về tính chính xác, kết quả có thể đạt được hoặc đáng tin cậy của việc sử dụng các vật liệu trên website của mình hoặc liên quan đến các vật liệu này hoặc các trang liên kết với website này.
+
+## 4. Hạn chế
+
+Trong bất kỳ trường hợp nào, chúng tôi hoặc nhà cung cấp của chúng tôi sẽ không chịu trách nhiệm đối với bất kỳ thiệt hại (bao gồm, mà không giới hạn, thiệt hại do mất dữ liệu hoặc lợi ích kinh doanh bị mất) phát sinh từ việc sử dụng hoặc không thể sử dụng các vật liệu trên website của chúng tôi, ngay cả khi chúng tôi hoặc đại diện được ủy quyền của chúng tôi đã được thông báo bằng miệng hoặc bằng văn bản về khả năng thiệt hại đó. Bởi vì một số các lãnh địa không cho phép hạn chế về trách nhiệm cho các thiệt hại gián tiếp hoặc hạn chế về trách nhiệm cho các thiệt hại ngẫu nhiên, các hạn chế này có thể không áp dụng cho bạn.
+
+## 5. Các liên kết
+
+Chúng tôi chưa xem xét tất cả các trang liên kết đến website của chúng tôi và không chịu trách nhiệm về nội dung của bất kỳ trang web nào liên kết đến website của chúng tôi. Việc liên kết bất kỳ trang web nào không đồng nghĩa với việc chúng tôi xác nhận các trang web đó. Việc sử dụng bất kỳ trang web liên kết nào là nguy cơ của người sử dụng.
+
+## 6. Sửa đổi
+
+Chúng tôi có thể sửa đổi các điều khoản và điều kiện này của chính sách bảo mật của chúng tôi vào bất kỳ lúc nào theo quyết định riêng của chúng tôi. Khi chúng tôi làm thay đổi này, chúng tôi sẽ gửi email thông báo. Chúng tôi khuyên bạn nên kiểm tra lại trang này thường xuyên để xem các thay đổi. Các thay đổi đối với chính sách bảo mật này có hiệu lực khi được đăng trên trang này.
+
+## 7. Điều khoản và điều kiện
+
+Bằng cách truy cập vào website này, bạn đồng ý với Điều khoản và Điều kiện của chúng tôi và đồng ý tuân thủ tất cả các luật pháp liên quan đến việc sử dụng website này. Nếu bạn không đồng ý với bất kỳ điều khoản nào trong tài liệu này, bạn bị cấm sử dụng hoặc truy cập website này. Các vật liệu trên website này được bảo vệ bởi luật bản quyền và luật thương hiệu áp dụng.
+
+## 8. Thông tin liên lạc
+
+Nếu bạn có bất kỳ câu hỏi nào về các Điều khoản và Điều kiện này, vui lòng liên hệ với chúng tôi.
+`);
+    </script>
+
+}

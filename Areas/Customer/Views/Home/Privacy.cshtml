@@ -3,4 +3,122 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div id="markdown-container" class="wwg medium text">
+</div>
+
+@section Scripts {
+
+    <script type="module">
+        import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
+        import { gfmHeadingId } from "https://cdn.jsdelivr.net/npm/marked-gfm-heading-id/+esm";
+
+        const options = {
+            prefix: "wwg-",
+        };
+
+        marked.use(gfmHeadingId(options));
+
+        document.getElementById('markdown-container').innerHTML = marked(`
+Chào mừng bạn đến với website của chúng tôi. Nếu bạn tiếp tục duyệt và sử dụng website này, bạn đồng ý tuân theo và bị ràng buộc bởi các điều khoản và điều kiện sử dụng, được liệt kê dưới đây, cùng với tất cả các luật pháp liên quan có hiệu lực. Nếu bạn không đồng ý với bất kỳ điều khoản nào trong các điều khoản này, bạn không được phép sử dụng hoặc truy cập website này. Các thuật ngữ "chúng tôi", "của chúng tôi" và "chủ sở hữu" được sử dụng trong điều khoản này đề cập đến chủ sở hữu website. Các thuật ngữ "bạn" và "của bạn" được sử dụng trong điều khoản này đề cập đến người dùng hoặc khách truy cập của website.
+
+- [Chính sách bảo mật](#wwg-chính-sách-bảo-mật)
+- [Chính sách mua hàng](#wwg-chính-sách-mua-hàng)
+
+---
+
+# Chính sách bảo mật
+
+### 1. Thu thập thông tin
+
+Chúng tôi thu thập thông tin từ bạn khi bạn đăng ký trên trang web, đặt hàng, đăng ký nhận bản tin, trả lời khảo sát hoặc điền vào mẫu thông tin. Khi đặt hàng hoặc đăng ký trên trang web, tùy theo trường hợp, bạn có thể được yêu cầu nhập: tên, địa chỉ email, địa chỉ thư từ, số điện thoại hoặc thông tin thẻ tín dụng. Bạn có thể, tuy nhiên, truy cập trang web của chúng tôi mà không cần cung cấp bất kỳ thông tin nào.
+
+### 2. Sử dụng thông tin của bạn
+
+Bất kỳ thông tin chúng tôi thu thập từ bạn có thể được sử dụng trong một trong những cách sau:
+
+- Để cá nhân hóa trải nghiệm của bạn (thông tin của bạn giúp chúng tôi tốt hơn đáp ứng nhu cầu cá nhân của bạn)
+- Để cải thiện trang web của chúng tôi (chúng tôi liên tục cố gắng cải thiện các sản phẩm và dịch vụ dựa trên thông tin và phản hồi mà chúng tôi nhận được từ bạn)
+- Để cải thiện dịch vụ khách hàng của chúng tôi (thông tin của bạn giúp chúng tôi hiệu quả hơn hỗ trợ nhu cầu dịch vụ khách hàng của bạn và yêu cầu hỗ trợ)
+- Để xử lý các giao dịch
+- Để quản lý một cuộc thi, khảo sát hoặc một tính năng trang web khác
+- Để gửi email định kỳ
+- Địa chỉ email mà bạn cung cấp để xử lý đơn đặt hàng sẽ chỉ được sử dụng để gửi thông tin và cập nhật liên quan đến đơn đặt hàng của bạn.
+- Nếu bạn chọn tham gia vào danh sách thư của chúng tôi, bạn sẽ nhận email có thể bao gồm các tin tức, cập nhật, thông tin liên quan đến sản phẩm hoặc dịch vụ của công ty, vv
+- Lưu ý: Nếu bất kỳ lúc nào bạn muốn hủy đăng ký nhận email tương lai, chúng tôi bao gồm hướng dẫn hủy đăng ký chi tiết ở cuối mỗi email.
+
+### 3. Bảo mật thông tin của bạn
+
+Chúng tôi thực hiện các biện pháp an ninh để duy trì an toàn thông tin cá nhân của bạn khi bạn đặt hàng hoặc nhập, gửi hoặc truy cập vào thông tin cá nhân của mình. Chúng tôi cung cấp sử dụng máy chủ an toàn. Tất cả các thông tin nhạy cảm / tín dụng được truyền qua Công nghệ Socket Layer (SSL) và sau đó được mã hóa vào cơ sở dữ liệu của nhà cung cấp cổng thanh toán của chúng tôi chỉ để được truy cập bởi những người có quyền truy cập đặc biệt vào hệ thống và có nghĩa vụ giữ thông tin bảo mật. Sau khi giao dịch, thông tin của bạn (thẻ tín dụng, số an ninh xã hội, tài khoản ngân hàng, vv) sẽ không được lưu trữ trên máy chủ của chúng tôi.
+
+### 4. Tiết lộ thông tin của bạn
+
+Chúng tôi không bán, trao đổi hoặc chuyển giao thông tin cá nhân của bạn cho bên thứ ba. Điều này không bao gồm các bên thứ ba đáng tin cậy hỗ trợ chúng tôi trong việc vận hành trang web của chúng tôi, thực hiện công việc của chúng tôi, hoặc dịch vụ bạn, miễn là những bên này đồng ý giữ thông tin này bí mật. Chúng tôi có thể cũng tiết lộ thông tin của bạn khi chúng tôi tin rằng việc tiết lộ này là phù hợp để tuân theo luật pháp, thực thi các quy định của trang web của chúng tôi, hoặc bảo vệ quyền, tài sản hoặc an toàn của chúng tôi hoặc người khác. Tuy nhiên, thông tin phi cá nhân về khách hàng có thể được cung cấp cho các bên khác để tiếp thị, quảng cáo hoặc các mục đích khác.
+
+### 5. Liên kết bên ngoài
+
+Đôi khi, theo quyết định của chúng tôi, chúng tôi có thể bao gồm hoặc cung cấp các sản phẩm hoặc dịch vụ của bên thứ ba trên trang web của chúng tôi. Những trang web của bên thứ ba này có các chính sách riêng về quyền riêng tư độc lập. Do đó, chúng tôi không chịu trách nhiệm hoặc nghĩa vụ về nội dung và các hoạt động của các trang web liên kết này. Tuy nhiên, chúng tôi cố gắng bảo vệ tính chân thực của trang web của mình và chào đón bất kỳ phản hồi về các trang web này.
+
+### 6. Google AdSense
+
+Một số quảng cáo có thể được cung cấp bởi Google. Công ty quảng cáo của Google có thể đặt cookie. Những cookie này cho phép Google hiển thị quảng cáo dựa trên lịch sử truy cập của bạn. Bạn có thể quản lý các quảng cáo được hiển thị cho bạn bằng cách chỉnh sửa các tùy chọn quảng cáo của Google. Nếu bạn muốn biết thêm thông tin về cách hoạt động của Google AdSense, hãy truy cập trang web chính thức của Google AdSense.
+
+### 7. Các quy định trẻ em trực tuyến
+
+Chúng tôi không cố ý thu thập bất kỳ thông tin nào từ người dưới 13 tuổi. Chính sách bảo mật này chỉ áp dụng cho các hoạt động trực tuyến và có liên quan đến thông tin được thu thập trực tuyến từ trang web của chúng tôi và không áp dụng cho thông tin được thu thập ngoại tuyến.
+
+### 8. Điều khoản và điều kiện
+
+Vui lòng truy cập cũng như xem các Điều khoản và Điều kiện của chúng tôi đối với việc sử dụng trang web của chúng tôi.
+
+### 9. Đồng ý
+
+Bằng cách sử dụng trang web của chúng tôi, bạn đồng ý với Chính sách quyền riêng tư của chúng tôi.
+
+### 10. Thay đổi chính sách
+
+Nếu chúng tôi quyết định thay đổi chính sách bảo mật của chúng tôi, chúng tôi sẽ đăng bài viết về những thay đổi đó trên trang này, và / hoặc cập nhật ngày thay đổi chính sách bảo mật của chúng tôi dưới đây.
+
+---
+
+# Chính sách mua hàng
+
+### 1. Mục Đích và Phạm Vi
+
+Chính sách mua hàng này được thiết lập để đảm bảo trải nghiệm mua sắm trên trang web của chúng tôi là minh bạch, công bằng và an toàn cho tất cả khách hàng. Chính sách này áp dụng cho tất cả các sản phẩm và dịch vụ mà chúng tôi cung cấp trên trang web.
+
+### 2. Quy Trình Đặt Hàng và Thanh Toán
+
+#### a. Đặt Hàng:
+
+- Quý khách có thể đặt hàng thông qua trang web của chúng tôi.
+- Trước khi xác nhận đơn hàng, quý khách cần kiểm tra kỹ thông tin sản phẩm và giá trước khi tiến hành thanh toán.
+- **Lưu ý:** Quý khách chỉ được phép mua với số lượng là 1 cho mỗi sản phẩm, và điều đó là cố định.
+
+#### b. Thông Tin Liên Hệ và Giao Hàng:
+
+- Quý khách cần cung cấp thông tin liên hệ chính xác để chúng tôi có thể liên lạc khi cần thiết.
+- Địa chỉ giao hàng cũng cần được xác định rõ ràng để đảm bảo quá trình giao hàng diễn ra thuận lợi.
+
+### 3. Phương Thức Thanh Toán và Bảo Mật
+
+- Chúng tôi chỉ chấp nhận hình thức thanh toán COD (thanh toán khi nhận hàng) để đảm bảo an toàn cho quý khách.
+- Thông tin cá nhân của khách hàng được bảo vệ theo chuẩn an toàn cao nhất.
+- Chúng tôi cam kết không chia sẻ thông tin cá nhân của khách hàng với bên thứ ba mà không có sự đồng ý.
+- Quý khách có thể theo dõi tình trạng giao hàng qua trang web của chúng tôi hoặc liên hệ trực tiếp với bộ phận hỗ trợ khách hàng.
+
+### 4. Đổi Trả và Hoàn Tiền
+
+- Chúng tôi cam kết đổi trả và hoàn tiền cho quý khách nếu sản phẩm không đúng như mô tả hoặc có lỗi kỹ thuật.
+- Quý khách có thể liên hệ trực tiếp với bộ phận hỗ trợ khách hàng để được hỗ trợ và tư vấn cụ thể.
+
+### 5. Hỗ Trợ Khách Hàng
+
+Chúng tôi cam kết cung cấp hỗ trợ khách hàng nhanh chóng và hiệu quả. Quý khách có thể liên hệ với chúng tôi qua các kênh liên lạc được cung cấp trên trang web.
+
+### 6. Hiệu Lực và Thay Đổi Chính Sách
+
+Chính sách này có hiệu lực từ ngày công bố và có thể được điều chỉnh theo quyết định của chúng tôi mà không cần báo trước. Những thay đổi sẽ được thông báo trên trang web của chúng tôi.
+`);
+    </script>
+
+}
