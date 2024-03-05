@@ -49,7 +49,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             var result = await _roleManager.CreateAsync(role);
             if (result.Succeeded)
             {
-                TempData["save"] = "Đã thêm loại phân quyền mới";
+                TempData["message"] = "Đã thêm loại phân quyền mới";
                 return RedirectToAction(nameof(Index));
             }
             return View();
@@ -87,7 +87,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             var result = await _roleManager.UpdateAsync(role);
             if (result.Succeeded)
             {
-                TempData["save"] = $"Đã cập nhật quyền {temp1} thành {role.Name}";
+                TempData["message"] = $"Đã cập nhật quyền {temp1} thành {role.Name}";
                 return RedirectToAction(nameof(Index));
             }
             return View();
@@ -146,7 +146,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             var role = await _userManager.AddToRoleAsync(user, roleUser.RoleId);
             if (role.Succeeded)
             {
-                TempData["save"] = "Đã gán quyền cho người dùng";
+                TempData["message"] = "Đã gán quyền cho người dùng";
                 return RedirectToAction(nameof(Index));
             }
             return View();

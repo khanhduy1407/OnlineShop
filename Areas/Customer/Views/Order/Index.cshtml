@@ -38,9 +38,9 @@
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            var success = '@TempData["orderSuccess"]';
-            if (success != '') {
-                alertify.alert('Đặt hàng', success, null);
+            var message = '@TempData["message"]';
+            if (message != '') {
+                alertify.alert('Đặt hàng', message, null);
             }
         })
     </script>

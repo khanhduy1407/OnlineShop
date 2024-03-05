@@ -98,6 +98,18 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var message = '@TempData["message"]';
+            var remove = '@TempData["remove"]';
+            if (message != '') {
+                alertify.success(message);
+            }
+            if (remove != '') {
+                alertify.error(remove);
+            }
+        })
+    </script>
 }
-
 

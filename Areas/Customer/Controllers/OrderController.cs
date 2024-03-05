@@ -63,7 +63,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             await _db.SaveChangesAsync();
             HttpContext.Session.Set("products", new List<Products>());
 
-            TempData["orderSuccess"] = "Bạn đã đặt hàng thành công!";
+            TempData["message"] = $"Bạn đã đặt hàng thành công với mã đơn hàng #{GetOrderNo()}";
 
             return RedirectToAction(nameof(Index));
         }

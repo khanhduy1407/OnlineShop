@@ -33,7 +33,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             if (result.Succeeded)
             {
                 var isSaveRole = await _userManager.AddToRoleAsync(user, "User");
-                TempData["save"] = "Đã thêm người dùng mới thành công";
+                TempData["message"] = "Đã thêm người dùng mới thành công.";
                 return RedirectToAction(nameof(Index));
             }
             foreach (var error in result.Errors)
@@ -66,7 +66,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             var result = await _userManager.UpdateAsync(userInfo);
             if (result.Succeeded)
             {
-                TempData["update"] = "Đã cập nhật người dùng thành công";
+                TempData["message"] = "Đã cập nhật người dùng thành công.";
                 return RedirectToAction(nameof(Index));
             }
             return View();
@@ -108,7 +108,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             int rowAffected = _db.SaveChanges();
             if (rowAffected > 0)
             {
-                TempData["save"] = "Đã khóa tài khoản người dùng thành công";
+                TempData["remove"] = "Đã khóa tài khoản người dùng thành công.";
                 return RedirectToAction(nameof(Index));
             }
             return View(userInfo);
@@ -136,7 +136,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             int rowAffected = _db.SaveChanges();
             if (rowAffected > 0)
             {
-                TempData["save"] = "Đã kích hoạt tài khoản người dùng thành công";
+                TempData["message"] = "Đã kích hoạt tài khoản người dùng thành công.";
                 return RedirectToAction(nameof(Index));
             }
             return View(userInfo);
@@ -164,7 +164,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             int rowAffected = _db.SaveChanges();
             if (rowAffected > 0)
             {
-                TempData["save"] = "Đã xóa người dùng thành công";
+                TempData["remove"] = "Đã xóa người dùng thành công";
                 return RedirectToAction(nameof(Index));
             }
             return View(userInfo);

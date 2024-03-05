@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineShop.Data;
 using OnlineShop.Models;
@@ -87,6 +87,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             }
             products.Add(product);
             HttpContext.Session.Set("products", products);
+            TempData["message"] = $"Đã thêm sản phẩm \"{product.Name}\" vào giỏ hàng.";
             return Redirect(Request.Headers.Referer.ToString());
         }
 
@@ -102,6 +103,7 @@ namespace OnlineShop.Areas.Customer.Controllers
                 {
                     products.Remove(product);
                     HttpContext.Session.Set("products", products);
+                    TempData["remove"] = $"Đã xóa sản phẩm \"{product.Name}\" khỏi giỏ hàng.";
                 }
             }
             return Redirect(Request.Headers.Referer.ToString());
@@ -118,6 +120,7 @@ namespace OnlineShop.Areas.Customer.Controllers
                 {
                     products.Remove(product);
                     HttpContext.Session.Set("products", products);
+                    TempData["remove"] = $"Đã xóa sản phẩm \"{product.Name}\" khỏi giỏ hàng.";
                 }
             }
             return Redirect(Request.Headers.Referer.ToString());

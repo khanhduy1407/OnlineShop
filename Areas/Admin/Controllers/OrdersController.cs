@@ -54,6 +54,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             _db.Orders.Update(order);
             await _db.SaveChangesAsync();
+            TempData["message"] = $"Cập nhật trạng thái cho đơn hàng \"{order.OrderNo}\" thành công.";
             return RedirectToAction(nameof(Index));
         }
     }

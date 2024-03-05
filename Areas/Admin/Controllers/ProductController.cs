@@ -50,6 +50,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             try
             {
                 var fileUrl = await UploadFileToS3(file);
+                TempData["message"] = "Đã upload hình ảnh lên server.";
                 return Json(new { fileUrl });
             }
             catch (Exception ex)
@@ -122,7 +123,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             var searchProduct = _db.Products.FirstOrDefault(c => c.Name == product.Name);
             if (searchProduct != null)
             {
-                ViewBag.message = "This product is already exists";
+                ViewBag.message = "Sản phẩm này đã tồn tại";
                 ViewBag.productTypeList = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
                 ViewBag.tagList = new SelectList(_db.SpecialTags.ToList(), "Id", "Name");
                 return View(product);
@@ -130,6 +131,7 @@ namespace OnlineShop.Areas.Admin.Controllers
 
             _db.Products.Add(product);
             await _db.SaveChangesAsync();
+            TempData["message"] = $"Đã thêm sản phẩm \"{product.Name}\" vào kệ hàng.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -156,6 +158,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             _db.Products.Update(product);
             await _db.SaveChangesAsync();
+            TempData["message"] = $"Đã cập nhật sản phẩm \"{product.Name}\" thành công.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -205,6 +208,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             }
             _db.Products.Remove(product);
             await _db.SaveChangesAsync();
+            TempData["remove"] = $"Đã xóa sản phẩm \"{product.Name}\" khỏi kệ hàng.";
             return RedirectToAction(nameof(Index));
         }
     }

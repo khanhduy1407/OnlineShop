@@ -28,14 +28,12 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
         //GET Create Action Method
-
         public ActionResult Create()
         {
             return View();
         }
 
         //POST Create Action Method
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SpecialTag specialTag)
@@ -44,6 +42,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 _db.SpecialTags.Add(specialTag);
                 await _db.SaveChangesAsync();
+                TempData["message"] = "Đã thêm thẻ sản phẩm mới.";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -51,7 +50,6 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
         //GET Edit Action Method
-
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -68,7 +66,6 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
         //POST Edit Action Method
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(SpecialTag specialTag)
@@ -77,6 +74,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 _db.Update(specialTag);
                 await _db.SaveChangesAsync();
+                TempData["message"] = "Đã cập nhật thẻ sản phẩm thành công.";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -84,7 +82,6 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
         //GET Details Action Method
-
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -101,17 +98,14 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
         //POST Edit Action Method
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Details(SpecialTag specialTag)
+        public IActionResult Details()
         {
             return RedirectToAction(nameof(Index));
-
         }
 
         //GET Delete Action Method
-
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -128,7 +122,6 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
         //POST Delete Action Method
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int? id, SpecialTag specialTag)
@@ -152,6 +145,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 _db.Remove(specialTags);
                 await _db.SaveChangesAsync();
+                TempData["remove"] = "Đã xóa thẻ sản phẩm.";
                 return RedirectToAction(nameof(Index));
             }
 

@@ -38,7 +38,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 _db.ProductTypes.Add(productTypes);
                 await _db.SaveChangesAsync();
-                TempData["save"] = "Đã thêm loại sản phẩm mới";
+                TempData["message"] = "Đã thêm loại sản phẩm mới";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -71,7 +71,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 _db.Update(productTypes);
                 await _db.SaveChangesAsync();
-                TempData["update"] = $"Đã cập nhật loại sản phẩm.";
+                TempData["message"] = $"Đã cập nhật loại sản phẩm.";
                 return RedirectToAction(nameof(Index));
             }
 

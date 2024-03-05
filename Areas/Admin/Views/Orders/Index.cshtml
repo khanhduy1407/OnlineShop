@@ -55,9 +55,9 @@
         let table = new DataTable('#myTable');
 
         $(function () {
-            var success = '@TempData["updateStatusSuccess"]';
-            if (success != '') {
-                alertify.alert('Cập nhật trạng thái đơn', success, null);
+            var message = '@TempData["message"]';
+            if (message != '') {
+                alertify.alert('Cập nhật đơn hàng', message, null);
             }
         })
     </script>

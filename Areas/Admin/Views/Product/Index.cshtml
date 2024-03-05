@@ -85,14 +85,10 @@
       });
 
     $(function() {
-        var save = '@TempData["save"]';
-        var update = '@TempData["update"]';
+        var message = '@TempData["message"]';
         var remove = '@TempData["remove"]';
-        if (save != '') {
-          alertify.success(save);
-        }
-        if (update != '') {
-          alertify.success(update);
+        if (message != '') {
+          alertify.success(message);
         }
         if (remove != '') {
           alertify.error(remove);
