@@ -43,6 +43,7 @@
             <a class="item" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">Loại sản phẩm</a>
             <a class="item" asp-area="Admin" asp-controller="SpecialTag" asp-action="Index">Thẻ</a>
             <a class="item" asp-area="Admin" asp-controller="Product" asp-action="Index">Sản phẩm</a>
+            <a class="item" asp-area="Admin" asp-controller="Orders" asp-action="Index">Các đơn hàng</a>
         }
         <partial name="_LoginMobileMenuPartial" />
     </div>
@@ -60,6 +61,7 @@
                 <a class="item" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">Loại sản phẩm</a>
                 <a class="item" asp-area="Admin" asp-controller="SpecialTag" asp-action="Index">Thẻ</a>
                 <a class="item" asp-area="Admin" asp-controller="Product" asp-action="Index">Sản phẩm</a>
+                <a class="item" asp-area="Admin" asp-controller="Orders" asp-action="Index">Các đơn hàng</a>
             }
             <div class="right menu">
                 <div class="ui item icon top left pointing hamberger button">
@@ -132,29 +134,35 @@
     </script>
 
 
-    <div class="lastDiv"></div>
+    <div id="lastDiv"></div>
     <script>
         $(document).ready(function () {
             $("#lastDiv").nextAll("center").remove();
-            $("center a[href='http://somee.com']").parent().css("display","none");
+            $("#lastDiv").nextAll("div").remove();
+            // $("center a[href='http://somee.com']").parent().css("display","none");
             setTimeout(function () {
-                $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                // $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                $("#lastDiv").nextAll("center").remove();
                 $("#lastDiv").nextAll("div").remove();
             }, 200);
             setTimeout(function () {
-                $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                // $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                $("#lastDiv").nextAll("center").remove();
                 $("#lastDiv").nextAll("div").remove();
             }, 300);
             setTimeout(function () {
-                $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                // $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                $("#lastDiv").nextAll("center").remove();
                 $("#lastDiv").nextAll("div").remove();
             }, 500);
             setTimeout(function () {
-                $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                // // $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                $("#lastDiv").nextAll("center").remove();
                 $("#lastDiv").nextAll("div").remove();
             }, 1500);
             setTimeout(function () {
-                $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                // $("center a[href='http://somee.com']").parent().nextAll("div").css("display","none");
+                $("#lastDiv").nextAll("center").remove();
                 $("#lastDiv").nextAll("div").remove();
             }, 3000);
         })
