@@ -50,6 +50,9 @@
         <th>
             @Html.DisplayNameFor(c => c.SpecialTagId)
         </th>
+        <th>
+            @Html.DisplayNameFor(c => c.CreatedAt)
+        </th>
         <th></th>
       </tr>
     </thead>
@@ -64,6 +67,7 @@
               <td>@item.IsAvailable</td>
               <td>@item.ProductTypes.ProductType</td>
               <td>@item.SpecialTag.Name</td>
+              <td>@item.CreatedAt</td>
               <td class="center aligned collapsing">
                   <partial name="_ButtonPartial" model="@item.Id" />
               </td>
