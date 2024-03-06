@@ -11,12 +11,15 @@ namespace OnlineShop.Models
     public class Products
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Nhập tên sản phẩm")]
+        [Display(Name = "Tên")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Thêm giá cho sản phẩm")]
+        [Display(Name = "Giá")]
         public decimal Price { get; set; }
+        [Display(Name = "Hình ảnh")]
         public string Image {  get; set; }
-        [Display(Name = "Màu sản phẩm")]
+        [Display(Name = "Màu sắc")]
         public string ProductColor { get; set; }
         [Required]
         [Display(Name = "Có sẵn")]

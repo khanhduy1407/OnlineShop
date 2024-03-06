@@ -52,7 +52,7 @@ namespace OnlineShop.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [BindProperty]
-            [Required]
+            [Required(ErrorMessage = "Vui lòng nhập mã khôi phục")]
             [DataType(DataType.Text)]
             [Display(Name = "Mã khôi phục")]
             public string RecoveryCode { get; set; }

@@ -38,7 +38,7 @@
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
                 <p>
-                    Bằng cách nhấn nút <b>"Đăng ký"</b>, bạn đã đồng ý với <a asp-page="./Privacy" asp-route-returnUrl="@Model.ReturnUrl">các Chính sách</a> và <a asp-page="./Terms" asp-route-returnUrl="@Model.ReturnUrl">Điều khoản sử dụng</a> của chúng tôi.
+                    Bằng cách nhấn nút <b>"Đăng ký"</b>, bạn đã đồng ý với <a asp-area="Customer" asp-controller="Home" asp-action="Privacy">các Chính sách</a> và <a asp-area="Customer" asp-controller="Home" asp-action="Terms">Điều khoản sử dụng</a> của chúng tôi.
                 </p>
                 <button id="registerSubmit" type="submit" class="fluid ui large primary button">Đăng ký</button>
             </form>

@@ -59,7 +59,7 @@ namespace OnlineShop.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Vui lòng nhập mã xác thực")]
             [StringLength(7, ErrorMessage = "{0} phải ít nhất {2} và tối đa {1} ký tự.", MinimumLength = 6)]
             [DataType(DataType.Text)]
             [Display(Name = "Mã xác thực")]
