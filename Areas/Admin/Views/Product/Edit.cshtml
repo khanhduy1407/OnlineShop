@@ -22,10 +22,7 @@
         <div class="field">
             <label asp-for="Image"></label>
             <input type="file" id="fileInput" />
-            <input asp-for="Image"
-                    value="https://img.freepik.com/free-vector/image-folder-concept-illustration_114360-114.jpg"
-                    type="hidden"
-                    id="imageUrlInput" />
+            <input asp-for="Image" type="hidden" id="imageUrlInput" />
             <img id="previewImage" src="@Model.Image" alt="Preview" class="ui centered medium rounded bordered image" style="margin-top: 10px;" />
             <span asp-validation-for="Image" class="text-danger"></span>
         </div>

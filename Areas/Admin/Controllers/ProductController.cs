@@ -129,6 +129,8 @@ namespace OnlineShop.Areas.Admin.Controllers
                 return View(product);
             }
 
+            product.CreatedAt = DateTime.Now;
+
             _db.Products.Add(product);
             await _db.SaveChangesAsync();
             TempData["message"] = $"Đã thêm sản phẩm \"{product.Name}\" vào kệ hàng.";

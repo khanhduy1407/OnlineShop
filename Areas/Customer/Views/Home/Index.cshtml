@@ -7,7 +7,7 @@
 }
 <br /><br />
 <div class="ui four column doubling grid">
-    @foreach (var product in Model)
+    @foreach (var product in Model.OrderByDescending(o => o.CreatedAt))
     {
         <div class="column">
             <div class="ui segment wwg-product">

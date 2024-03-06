@@ -36,5 +36,7 @@ namespace OnlineShop.Models
         public int SpecialTagId { get; set; }
         [ForeignKey("SpecialTagId")]
         public virtual SpecialTag SpecialTag { get; set; }
+
+        public DateTime CreatedAt { get; set; }
     }
 }
