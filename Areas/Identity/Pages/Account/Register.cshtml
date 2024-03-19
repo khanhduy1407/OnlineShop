@@ -16,6 +16,16 @@
                     </p>
                 </div>
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="two fields">
+                    <div class="field">
+                        <input asp-for="Input.FirstName" autocomplete="firstname" aria-required="true" placeholder="Họ" />
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="field">
+                        <input asp-for="Input.LastName" autocomplete="lastname" aria-required="true" placeholder="Tên" />
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                </div>
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="user icon"></i>

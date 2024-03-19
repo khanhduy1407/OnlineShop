@@ -25,12 +25,16 @@
                 <div class="field">
                     <label asp-for="Name"></label>
                     <input type="hidden" asp-for="Id" />
-                    <input asp-for="Name" placeholder="Họ tên" />
+                    <input asp-for="Name" value="@ViewBag.FullName" readonly placeholder="Họ tên" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="field">
                     <label asp-for="PhoneNo"></label>
-                    <input asp-for="PhoneNo" placeholder="Số điện thoại" type="number" />
+                    @if (ViewBag.PhoneNumber == "")
+                    {
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index">Thêm số điện thoại</a>
+                    }
+                    <input asp-for="PhoneNo" value="@ViewBag.PhoneNumber" readonly placeholder="Số điện thoại" type="number" />
                     <span asp-validation-for="PhoneNo" class="text-danger"></span>
                 </div>
                 <div class="field">

@@ -38,7 +38,18 @@ namespace OnlineShop.Areas.Customer.Controllers
         // GET Checkout action method
         public IActionResult Checkout()
         {
+            List<Products> products = HttpContext.Session.Get<List<Products>>("products");
+            if (products == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
             ViewBag.UserEmail = User.Identity.Name;
+
+            var user = _db.ApplicationUsers.Where(u => u.Email == User.Identity.Name).FirstOrDefault();
+            ViewBag.FullName = $"{user.FirstName} {user.LastName}";
+            ViewBag.PhoneNumber = user.PhoneNumber == null ? "" : user.PhoneNumber;
+
             return View();
         }
 

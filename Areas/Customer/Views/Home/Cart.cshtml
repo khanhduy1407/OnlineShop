@@ -21,8 +21,21 @@
         </div>
         <div class="right floated column">
             <div class="ui segment">
-                <h3>Tổng cộng: $@Model.Sum(c => c.Price).ToString("#")</h3>
-                <a asp-area="Customer" asp-action="Checkout" asp-controller="Order" class="ui large primary button">Tiến hành thanh toán</a>
+                <h3>
+                  Tổng cộng: $
+                  @if (Model.Count > 0)
+                  {
+                      @Model.Sum(c => c.Price).ToString("#")
+                  }
+                  else
+                  {
+                      <span>0</span>
+                  }
+                </h3>
+                @if (Model.Count > 0)
+                {
+                    <a asp-area="Customer" asp-action="Checkout" asp-controller="Order" class="ui large primary button">Tiến hành thanh toán</a>
+                }
             </div>
         </div>
     </div>

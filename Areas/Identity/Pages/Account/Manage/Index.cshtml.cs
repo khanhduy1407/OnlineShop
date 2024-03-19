@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using OnlineShop.Data;
 
 namespace OnlineShop.Areas.Identity.Pages.Account.Manage
 {
@@ -16,13 +17,16 @@ namespace OnlineShop.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ApplicationDbContext _db;
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager,
+            ApplicationDbContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _db = db;
         }
 
         /// <summary>
@@ -51,6 +55,12 @@ namespace OnlineShop.Areas.Identity.Pages.Account.Manage
         /// </summary>
         public class InputModel
         {
+            [Required]
+            [Display(Name = "Tên")]
+            public string FirstName { get; set; }
+            [Required]
+            [Display(Name = "Họ")]
+            public string LastName { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -82,6 +92,12 @@ namespace OnlineShop.Areas.Identity.Pages.Account.Manage
             }
 
             await LoadAsync(user);
+
+            // Load first and last name
+            var appUser = await _db.ApplicationUsers.FindAsync(user.Id);
+            Input.FirstName = appUser.FirstName;
+            Input.LastName = appUser.LastName;
+
             return Page();
         }
 
@@ -97,6 +113,16 @@ namespace OnlineShop.Areas.Identity.Pages.Account.Manage
             {
                 await LoadAsync(user);
                 return Page();
+            }
+
+            // Update the user's first and last name if it has changed
+            var appUser = await _db.ApplicationUsers.FindAsync(user.Id);
+            if (Input.FirstName != appUser.FirstName || Input.LastName != appUser.LastName)
+            {
+                appUser.FirstName = Input.FirstName;
+                appUser.LastName = Input.LastName;
+                _db.ApplicationUsers.Update(appUser);
+                await _db.SaveChangesAsync();
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);

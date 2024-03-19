@@ -15,7 +15,7 @@ namespace OnlineShop.Models
         [Required(ErrorMessage = "Vui lòng nhập họ tên.")]
         [Display(Name = "Họ tên")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
+        [Required(ErrorMessage = "Vui lòng thêm số điện thoại!")]
         [Display(Name = "Số điện thoại")]
         public string PhoneNo { get; set; }
         [Required]
