@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Trang quản trị";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="ui piled segments">
+    <h5 class="ui top attached medium header">
+        <i class="fa-solid fa-gear fa-spin"></i>
+        Cấu hình
+    </h5>
+    <div class="ui attached segment">
+        <a class="ui basic button m-1">
+            <i class="fa-solid fa-bars"></i>
+            Cấu hình menu
+        </a>
+        <a class="ui basic button m-1">
+            <i class="fa-solid fa-shoe-prints"></i>
+            Cấu hình chân trang
+        </a>
+    </div>
+    <h5 class="ui attached medium header">
+        <i class="fa-solid fa-toolbox fa-bounce"></i>
+        Công cụ
+    </h5>
+    <div class="ui bottom attached segment">
+        <a class="ui basic button m-1" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">
+            <i class="fa-solid fa-tag"></i>
+            Quản lý loại sp
+        </a>
+        <a class="ui basic button m-1" asp-area="Admin" asp-controller="SpecialTag" asp-action="Index">
+            <i class="fa-solid fa-hashtag"></i>
+            Quản lý thẻ sp
+        </a>
+        <a class="ui basic button m-1" asp-area="Admin" asp-controller="Product" asp-action="Index">
+            <i class="fa-solid fa-box"></i>
+            Quản lý sản phẩm
+        </a>
+        <a class="ui basic button m-1" asp-area="Admin" asp-controller="Orders" asp-action="Index">
+            <i class="fa-regular fa-file-lines"></i>
+            Quản lý đơn hàng
+        </a>
+        <a class="ui basic button m-1" asp-area="Admin" asp-controller="User" asp-action="Index">
+            <i class="fa-solid fa-user-tie"></i>
+            Quản lý người dùng
+        </a>
+    </div>
+</div>
+

@@ -40,10 +40,7 @@
         </a>
         @if (userRole == "Admin")
         {
-            <a class="item" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">Loại sản phẩm</a>
-            <a class="item" asp-area="Admin" asp-controller="SpecialTag" asp-action="Index">Thẻ</a>
-            <a class="item" asp-area="Admin" asp-controller="Product" asp-action="Index">Sản phẩm</a>
-            <a class="item" asp-area="Admin" asp-controller="Orders" asp-action="Index">Các đơn hàng</a>
+            <a class="item" asp-area="Admin" asp-controller="Home" asp-action="Index">Trang quản trị</a>
         }
         <partial name="_LoginMobileMenuPartial" />
     </div>
@@ -58,10 +55,7 @@
             </a>
             @if (userRole == "Admin")
             {
-                <a class="item" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">Loại sản phẩm</a>
-                <a class="item" asp-area="Admin" asp-controller="SpecialTag" asp-action="Index">Thẻ</a>
-                <a class="item" asp-area="Admin" asp-controller="Product" asp-action="Index">Sản phẩm</a>
-                <a class="item" asp-area="Admin" asp-controller="Orders" asp-action="Index">Các đơn hàng</a>
+                <a class="item" asp-area="Admin" asp-controller="Home" asp-action="Index">Trang quản trị</a>
             }
             <div class="right menu">
                 <div class="ui item icon top left pointing hamberger button">

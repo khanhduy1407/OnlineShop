@@ -17,10 +17,10 @@ namespace OnlineShop.Models.Services
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("kn145660@gmail.com", "jxablhrupqizieyb")
+                Credentials = new NetworkCredential("nkduy.dev@gmail.com", "yphglldxtebyacig")
             };
 
-            MailMessage mail = new MailMessage("kn14560@gmail.com", email)
+            MailMessage mail = new MailMessage("nkduy.dev@gmail.com", email)
             {
                 IsBodyHtml = true,
                 Subject = subject,

@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Data;
 using OnlineShop.Models;
 
-namespace OnlineShop.Areas.Customer.Controllers
+namespace OnlineShop.Areas.Admin.Controllers
 {
-    [Area("Customer")]
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         ApplicationDbContext _db;
@@ -19,28 +21,6 @@ namespace OnlineShop.Areas.Customer.Controllers
         public IActionResult Index()
         {
             return View(_db.ApplicationUsers.ToList());
-        }
-
-        public async Task<IActionResult> Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(ApplicationUser user)
-        {
-            var result = await _userManager.CreateAsync(user, user.PasswordHash);
-            if (result.Succeeded)
-            {
-                var isSaveRole = await _userManager.AddToRoleAsync(user, "User");
-                TempData["message"] = "Đã thêm người dùng mới thành công.";
-                return RedirectToAction(nameof(Index));
-            }
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
-            return View();
         }
 
         public async Task<IActionResult> Edit(string id)
@@ -82,7 +62,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             return View(user);
         }
 
-        public async Task<IActionResult> Locout(string id)
+        public async Task<IActionResult> Lockout(string id)
         {
             if (id == null)
             {
@@ -97,7 +77,7 @@ namespace OnlineShop.Areas.Customer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Locout(ApplicationUser user)
+        public async Task<IActionResult> Lockout(ApplicationUser user)
         {
             var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id);
             if (userInfo == null)
