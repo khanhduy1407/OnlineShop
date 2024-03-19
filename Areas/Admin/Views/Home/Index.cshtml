@@ -6,17 +6,21 @@
 
 <div class="ui piled segments">
     <h5 class="ui top attached medium header">
-        <i class="fa-solid fa-gear fa-spin"></i>
-        Cấu hình
+        <i class="fa-regular fa-user fa-bounce"></i>
+        Quản lý tài khoản
     </h5>
     <div class="ui attached segment">
-        <a class="ui basic button m-1">
-            <i class="fa-solid fa-bars"></i>
-            Cấu hình menu
+        <a class="ui basic button m-1" asp-area="Admin" asp-controller="User" asp-action="Index">
+            <i class="fa-regular fa-user"></i>
+            Quản lý người dùng
+        </a>
+        <a class="ui basic button m-1" asp-area="Admin" asp-controller="Role" asp-action="Index">
+            <i class="fa-solid fa-user-tie"></i>
+            Quản lý quyền hạn
         </a>
         <a class="ui basic button m-1">
-            <i class="fa-solid fa-shoe-prints"></i>
-            Cấu hình chân trang
+            <i class="fa-solid fa-gear fa-spin"></i>
+            Cấu hình phân quyền
         </a>
     </div>
     <h5 class="ui attached medium header">
@@ -39,10 +43,6 @@
         <a class="ui basic button m-1" asp-area="Admin" asp-controller="Orders" asp-action="Index">
             <i class="fa-regular fa-file-lines"></i>
             Quản lý đơn hàng
-        </a>
-        <a class="ui basic button m-1" asp-area="Admin" asp-controller="User" asp-action="Index">
-            <i class="fa-solid fa-user-tie"></i>
-            Quản lý người dùng
         </a>
     </div>
 </div>

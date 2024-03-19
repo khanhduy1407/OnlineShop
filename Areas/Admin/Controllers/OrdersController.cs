@@ -9,7 +9,7 @@ using OnlineShop.Models;
 namespace OnlineShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Marketing")]
     public class OrdersController : Controller
     {
         private ApplicationDbContext _db;

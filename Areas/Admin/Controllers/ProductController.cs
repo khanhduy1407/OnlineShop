@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace OnlineShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Marketing")]
     public class ProductController : Controller
     {
         private ApplicationDbContext _db;
