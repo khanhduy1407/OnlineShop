@@ -4,15 +4,21 @@
     ViewData["Title"] = "Danh sách sản phẩm";
 }
 
-<br/><br/>
 <div class="row">
   <div class="col-6">
-        <h2 class="text-info">Danh sách sản phẩm</h2>
+        <h2 class="text-info">@ViewData["Title"]</h2>
   </div>
   <div class="col-6 text-right">
-    <a asp-action="Create" class="ui inverted teal button"><i class="fa-solid fa-plus"></i>&nbsp; Thêm sản phẩm mới</a>
+    <a asp-action="Create" class="ui inverted primary button"><i class="fa-solid fa-plus"></i>&nbsp; Thêm sản phẩm mới</a>
   </div>
 </div>
+
+<br />
+
+<a class="wwg medium text" asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="icon arrow left"></i> Quay lại</a>
+
+<br />
+
 <form method="post" class="ui large form">
     <div class="inline fields">
     <div class="three wide field">
@@ -32,27 +38,13 @@
     <table class="ui celled table" id="myTable">
     <thead>
       <tr class="table-info">
-        <th>
-            @Html.DisplayNameFor(c => c.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(c => c.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(c => c.ProductColor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(c => c.IsAvailable)
-        </th>
-        <th>
-            @Html.DisplayNameFor(c => c.ProductTypeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(c => c.SpecialTagId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(c => c.CreatedAt)
-        </th>
+        <th>Tên sp</th>
+        <th>Giá</th>
+        <th>Màu sắc</th>
+        <th>Tình trạng kho</th>
+        <th>Loại sp</th>
+        <th>Thẻ sp</th>
+        <th>Ngày đăng</th>
         <th></th>
       </tr>
     </thead>
@@ -61,7 +53,10 @@
       @foreach (var item in Model)
       {
           <tr>
-              <td>@item.Name</td>
+              <td>
+                <img src="@item.Image" style="height: 50px; margin-right: 5px;" />
+                @item.Name
+              </td>
               <td>@item.Price</td>
               <td>@item.ProductColor</td>
               <td>@item.IsAvailable</td>

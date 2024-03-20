@@ -5,12 +5,13 @@
 
 <br/>
 
-<h2 class="text-info">Chi tiết loại sp</h2>
+<h2 class="text-info">@ViewData["Title"]</h2>
+
+<a class="wwg medium text" asp-action="Index"><i class="icon arrow left"></i> Quay lại</a>
+
 <div class="ui segment">
   <form asp-action="Details" method="post" class="ui large form">
-    <div asp-validation-summary="ModelOnly" class="text-danger">
-      <!---->
-    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="field">
       <label asp-for="ProductType"></label>
       <input asp-for="ProductType" readonly />

@@ -2,9 +2,11 @@
 @{
     ViewData["Title"] = "Thêm sản phẩm";
 }
-<br />
 
-<h2 class="text-info">Thêm sản phẩm mới</h2>
+<h2 class="text-info">@ViewData["Title"]</h2>
+
+<a class="wwg medium text" asp-action="Index"><i class="icon arrow left"></i> Quay lại</a>
+
 <div class="ui segment">
     <form asp-action="Create" method="post" enctype="multipart/form-data" class="ui large form">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -16,7 +18,7 @@
         </div>
         <div class="field">
             <label asp-for="Price"></label>
-            <input asp-for="Price" placeholder="Giá" type="number" />
+            <input asp-for="Price" placeholder="$100" type="number" />
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
         <div class="field">
@@ -34,15 +36,17 @@
             <input asp-for="ProductColor" />
             <span asp-validation-for="ProductColor" class="text-danger"></span>
         </div>
-        <div class="field">
-            <label asp-for="ProductTypeId"></label>
-            <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeList"></select>
-            <span asp-validation-for="ProductTypeId" class="text-danger"></span>
-        </div>
-        <div class="field">
-            <label asp-for="SpecialTagId"></label>
-            <select asp-for="SpecialTagId" asp-items="ViewBag.tagList"></select>
-            <span asp-validation-for="SpecialTagId" class="text-danger"></span>
+        <div class="two fields">
+          <div class="field">
+              <label asp-for="ProductTypeId"></label>
+              <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeList"></select>
+              <span asp-validation-for="ProductTypeId" class="text-danger"></span>
+          </div>
+          <div class="field">
+              <label asp-for="SpecialTagId"></label>
+              <select asp-for="SpecialTagId" asp-items="ViewBag.tagList"></select>
+              <span asp-validation-for="SpecialTagId" class="text-danger"></span>
+            </div>
         </div>
         <div class="field">
             <label asp-for="IsAvailable"></label>
@@ -65,6 +69,8 @@
     }
 }
 
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script type="text/javascript">
 <script>
     document.getElementById('fileInput').addEventListener('change', function (event) {
         var fileInput = event.target;
@@ -82,14 +88,13 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    // Update the hidden input with the file URL
                     document.getElementById('imageUrlInput').value = data.fileUrl;
-
                     document.getElementById('previewImage').src = data.fileUrl;
+                    // Update the hidden input with the file URL
                     document.getElementById('previewImage').style.display = 'block';
                 })
                 .catch(error => {
-                    console.error('Error uploading file:', error);
+                    alertify.alert('Lỗi lưu hình ảnh', "Lưu hình ảnh thất bại với lỗi: " + error, null);
                 });
         }
     });

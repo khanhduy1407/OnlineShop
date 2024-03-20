@@ -2,9 +2,11 @@
 @{
     ViewData["Title"] = "Xóa sản phẩm";
 }
-<br />
 
-<h2 class="text-info">Xóa sản phẩm</h2>
+<h2 class="text-info">@ViewData["Title"]</h2>
+
+<a class="wwg medium text" asp-action="Index"><i class="icon arrow left"></i> Quay lại</a>
+
 <div class="ui segment">
     <form asp-action="Delete" method="post" enctype="multipart/form-data" class="ui large form">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -27,15 +29,17 @@
             <input asp-for="ProductColor" readonly />
             <span asp-validation-for="ProductColor" class="text-danger"></span>
         </div>
-        <div class="field">
-            <label asp-for="ProductTypeId"></label>
-            <input asp-for="ProductTypeId" readonly />
-            <span asp-validation-for="ProductTypeId" class="text-danger"></span>
-        </div>
-        <div class="field">
-            <label asp-for="SpecialTagId"></label>
-            <input asp-for="SpecialTagId" readonly />
-            <span asp-validation-for="SpecialTagId" class="text-danger"></span>
+        <div class="two fields">
+            <div class="field">
+                <label asp-for="ProductTypeId"></label>
+                <input asp-for="ProductTypeId" readonly />
+                <span asp-validation-for="ProductTypeId" class="text-danger"></span>
+            </div>
+            <div class="field">
+                <label asp-for="SpecialTagId"></label>
+                <input asp-for="SpecialTagId" readonly />
+                <span asp-validation-for="SpecialTagId" class="text-danger"></span>
+            </div>
         </div>
         <div class="field">
             <label asp-for="IsAvailable"></label>

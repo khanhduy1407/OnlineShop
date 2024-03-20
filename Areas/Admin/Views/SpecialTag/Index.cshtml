@@ -4,8 +4,6 @@
     ViewData["Title"] = "Danh sách thẻ";
 }
 
-<br />
-<br />
 <div class="row">
     <div class="col-6">
         <h2 class="text-info">Danh sách thẻ</h2>
@@ -14,14 +12,17 @@
         <a asp-action="Create" class="ui inverted primary button"><i class="fas fa-plus"></i>&nbsp; Thêm thẻ mới</a>
     </div>
 </div>
+
+<br />
+
+<a class="wwg medium text" asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="icon arrow left"></i> Quay lại</a>
+
 <br />
 <div>
     <table class="ui celled table">
         <tr class="table-info">
-            <th>Mã thẻ</th>
-            <th>
-                @Html.DisplayNameFor(c => c.Name)
-            </th>
+            <th>Id</th>
+            <th>Tên thẻ sp</th>
             <th></th>
         </tr>
         @foreach (var item in Model)

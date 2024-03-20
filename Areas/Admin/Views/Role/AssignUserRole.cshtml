@@ -2,20 +2,14 @@
     ViewData["Title"] = "Danh sách phân quyền";
 }
 
-<br />
-<br />
-<div class="row">
-    <div class="col-6">
-        <h2 class="text-info">Danh sách phân quyền</h2>
-    </div>
-</div>
-<br />
+<h2 class="text-info">@ViewData["Title"]</h2>
+
+<a class="wwg medium text" asp-action="Index"><i class="icon arrow left"></i> Quay lại</a>
+
 <div>
     <table class="ui celled table">
         <tr class="table-info">
-            <th>
-                Người dùng
-            </th>
+            <th>Người dùng</th>
             <th>Quyền</th>
         </tr>
         @foreach (var item in ViewBag.UserRoles)

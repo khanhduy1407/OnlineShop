@@ -2,29 +2,32 @@
     ViewData["Title"] = "Danh sách quyền";
 }
 
+<h1>@ViewData["Title"]</h1>
+
+<a class="wwg medium text" asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="icon arrow left"></i> Quay lại</a>
+
 <br />
-<br />
-<div class="row">
-    <div class="col-6">
-        <h2 class="text-info">Danh sách quyền</h2>
-    </div>
-    <div class="col-6 text-right">
-        <a asp-action="Create" class="ui inverted primary button"><i class="fa-solid fa-plus"></i>&nbsp; Thêm quyền mới</a>
-    </div>
+
+<div>
+    <a class="ui basic button" asp-area="Admin" asp-controller="Role" asp-action="Create"><i class="fa-solid fa-plus"></i>&nbsp; Thêm quyền mới</a>
+    <a class="ui basic button" asp-area="Admin" asp-controller="Role" asp-action="Assign">Phân quyền</a>
+    <a class="ui basic button" asp-area="Admin" asp-controller="Role" asp-action="AssignUserRole">Người dùng và quyền</a>
 </div>
+
 <br />
+
 <div>
     <table class="ui celled table">
         <tr class="table-info">
-            <th>Tên</th>
             <th>Id</th>
+            <th>Tên</th>
             <th></th>
         </tr>
         @foreach (var item in ViewBag.Roles)
         {
             <tr>
-                <td>@item.Name</td>
                 <td>@item.Id</td>
+                <td>@item.Name</td>
                 <td class="right aligned collapsing">
                     <div class="ui buttons">
                         <a asp-action="Edit" class="ui inverted primary button" asp-route-id="@item.Id">

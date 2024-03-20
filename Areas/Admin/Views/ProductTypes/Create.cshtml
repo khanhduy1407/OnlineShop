@@ -3,14 +3,13 @@
     ViewData["Title"] = "Thêm loại sản phẩm";
 }
 
-<br/>
+<h2 class="text-info">@ViewData["Title"]</h2>
 
-<h2 class="text-info">Thêm loại sản phẩm</h2>
+<a class="wwg medium text" asp-action="Index"><i class="icon arrow left"></i> Quay lại</a>
+
 <div class="ui segment">
   <form asp-action="Create" method="post" class="ui large form">
-    <div asp-validation-summary="ModelOnly" class="text-danger">
-      <!---->
-    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="field">
       <label asp-for="ProductType"></label>
       <input asp-for="ProductType" placeholder="Tên loại sản phẩm" autocomplete="off" />

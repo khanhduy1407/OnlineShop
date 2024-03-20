@@ -12,23 +12,27 @@
     <ol class="list">
         <li>
             <p>
-                Tải xuống ứng dụng xác thực hai yếu tố như
+                Tải xuống ứng dụng xác thực hai yếu tố
                 <a href="https://play.google.com/store/apps/details?id=com.nkduy.authenticator">Kdu Authenticator</a>
-                (tạo bởi <a href="https://github.com/khanhduy1407">NKDuy</a> và <b>khuyến khích sử dụng</b> vì bảo mật nâng cao) cho Android
-                hoặc Google Authenticator cho
-                <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en">Android</a> và
-                <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a>.
+                (tạo bởi <a href="https://github.com/khanhduy1407">NKDuy</a> và <b>khuyến khích sử dụng</b> vì bảo mật nâng cao).
             </p>
         </li>
         <li>
-            <p>Quét mã QR hoặc nhập khóa này <kbd>@Model.SharedKey</kbd> vào ứng dụng xác thực 2 yếu tố của bạn. Khoảng cách và hoa thường không quan trọng.</p>
-            <div id="qrCode"></div>
+            <p>Nhập khóa bên dưới vào ứng dụng Kdu Authenticator. Dấu cách và hoa thường không quan trọng.</p>
+            <div class="ui large form">
+              <div class="field">
+                <input value="@Model.SharedKey" readonly />
+              </div>
+            </div>
+            <br />
+            <p>Hoặc quét mã QR:</p>
+            <div id="qrCode" style="display: flex; justify-content: center;"></div>
             <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div>
         </li>
         <li>
             <p>
-                Sau khi bạn quét mã QR hoặc nhập khóa ở trên, ứng dụng xác thực 2 yếu tố sẽ cung cấp cho bạn
-                một mã duy nhất. Nhập mã vào ô xác nhận bên dưới.
+                Sau khi bạn quét mã QR hoặc nhập khóa ở trên, Kdu Authenticator sẽ cung cấp cho bạn
+                một mã OTP. Nhập mã vào ô xác nhận bên dưới.
             </p>
             <form id="send-code" method="post" class="ui large form">
                 <div class="field">

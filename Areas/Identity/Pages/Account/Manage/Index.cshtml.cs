@@ -56,10 +56,10 @@ namespace OnlineShop.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Required]
-            [Display(Name = "Tên")]
+            [Display(Name = "Họ")]
             public string FirstName { get; set; }
             [Required]
-            [Display(Name = "Họ")]
+            [Display(Name = "Tên")]
             public string LastName { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used

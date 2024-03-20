@@ -1,10 +1,13 @@
 ﻿@model OnlineShop.Models.SpecialTag
 @{
-    ViewData["Title"] = "Tạo thẻ";
+    ViewData["Title"] = "Thêm thẻ sp";
 }
 <br />
 
-<h2 class="text-info">Thêm thẻ đặc biệt</h2>
+<h2 class="text-info">@ViewData["Title"]</h2>
+
+<a class="wwg medium text" asp-action="Index"><i class="icon arrow left"></i> Quay lại</a>
+
 <div class="ui segment">
   <form asp-action="Create" method="post" class="ui large form">
       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
