@@ -9,29 +9,32 @@
 <div class="ui four column doubling grid">
     @foreach (var product in Model.OrderByDescending(o => o.CreatedAt))
     {
-        <div class="column">
-            <div class="ui segment wwg-product">
-                <a class="wwg-imgbox" asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id">
-                    <img src="@product.Image">
-                </a>
-                <div class="wwg-details">
-                    <h2>Tên sp<br /><span>@product.Name</span></h2>
-                    <div class="wwg-price">$@product.Price.ToString("#")</div>
-                    <label class="wwg-label">Loại/Thẻ sp</label>
-                    <ul class="wwg-ul">
-                        <li>@product.ProductTypes.ProductType</li>
-                        <li>@product.SpecialTag.Name</li>
-                    </ul>
-                    <label class="wwg-label">Màu sắc</label>
-                    <ul class="wwg-ul">
-                        <li>@product.ProductColor</li>
-                    </ul>
-                    <a class="fluid ui primary button wwg-button" asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id">
-                        Xem chi tiết
+        if (product.IsAvailable)
+        {
+            <div class="column">
+                <div class="ui segment wwg-product">
+                    <a class="wwg-imgbox" asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id">
+                        <img src="@product.Image">
                     </a>
+                    <div class="wwg-details">
+                        <h2>Tên sp<br /><span>@product.Name</span></h2>
+                        <div class="wwg-price">$@product.Price.ToString("#")</div>
+                        <label class="wwg-label">Loại/Thẻ sp</label>
+                        <ul class="wwg-ul">
+                            <li>@product.ProductTypes.ProductType</li>
+                            <li>@product.SpecialTag.Name</li>
+                        </ul>
+                        <label class="wwg-label">Màu sắc</label>
+                        <ul class="wwg-ul">
+                            <li>@product.ProductColor</li>
+                        </ul>
+                        <a class="fluid ui primary button wwg-button" asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id">
+                            Xem chi tiết
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     }
 </div>
 <div class="mt-4">

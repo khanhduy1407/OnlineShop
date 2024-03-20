@@ -62,6 +62,10 @@ namespace OnlineShop.Areas.Customer.Controllers
             {
                 return NotFound();
             }
+            if (!product.IsAvailable)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View(product);
         }
 
