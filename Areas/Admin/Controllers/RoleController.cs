@@ -138,17 +138,31 @@ namespace OnlineShop.Areas.Admin.Controllers
             var isCheckRoleAssign = await _userManager.IsInRoleAsync(user, roleUser.RoleId);
             if (isCheckRoleAssign)
             {
-                ViewBag.msg = "Người dùng này đã có quyền này";
+                ViewBag.msg = "Người dùng này đã được gắn quyền này";
                 ViewData["UserId"] = new SelectList(_db.ApplicationUsers.Where(f => f.LockoutEnd < DateTime.Now || f.LockoutEnd == null).ToList(), "Id", "UserName");
                 ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
                 return View();
             }
-            var role = await _userManager.AddToRoleAsync(user, roleUser.RoleId);
-            if (role.Succeeded)
+
+            // Lấy thông tin role id cũ, sau đó xóa người dùng với role cũ, và cuối cùng thêm người dùng với role mới
+            var oldRoleId = await _userManager.GetRolesAsync(user);
+            var removedRole = await _userManager.RemoveFromRolesAsync(user, oldRoleId);
+            if (removedRole.Succeeded)
             {
-                TempData["message"] = "Đã gán quyền cho người dùng";
-                return RedirectToAction(nameof(Index));
+                var role = await _userManager.AddToRoleAsync(user, roleUser.RoleId);
+
+                if (role.Succeeded)
+                {
+                    TempData["message"] = "Đã gán quyền cho người dùng";
+                    return RedirectToAction(nameof(Index));
+                }
+            } else
+            {
+                Console.WriteLine("Error cannot remove role!");
             }
+
+            ViewData["UserId"] = new SelectList(_db.ApplicationUsers.Where(f => f.LockoutEnd < DateTime.Now || f.LockoutEnd == null).ToList(), "Id", "UserName");
+            ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
             return View();
         }
 
