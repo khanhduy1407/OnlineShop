@@ -144,7 +144,8 @@ namespace OnlineShop.Areas.Admin.Controllers
                 return View();
             }
 
-            // Lấy thông tin role id cũ, sau đó xóa người dùng với role cũ, và cuối cùng thêm người dùng với role mới
+            // Lấy thông tin (các) role id hiện tại của người dùng,
+            // sau đó xóa người dùng với (các) role id đó, và cuối cùng thêm người dùng với role mới
             var oldRoleId = await _userManager.GetRolesAsync(user);
             var removedRole = await _userManager.RemoveFromRolesAsync(user, oldRoleId);
             if (removedRole.Succeeded)
