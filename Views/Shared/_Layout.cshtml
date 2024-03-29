@@ -38,7 +38,7 @@
         <a class="item" asp-area="" asp-controller="Home" asp-action="Index">
             Trang chủ
         </a>
-        @if (userRole == "Admin")
+        @if (userRole == "Admin" || userRole == "Marketing")
         {
             <a class="item" asp-area="Admin" asp-controller="Home" asp-action="Index">Trang quản trị</a>
         }
@@ -53,7 +53,7 @@
             <a class="item" asp-area="" asp-controller="Home" asp-action="Index">
                 Trang chủ
             </a>
-            @if (userRole == "Admin")
+            @if (userRole == "Admin" || userRole == "Marketing")
             {
                 <a class="item" asp-area="Admin" asp-controller="Home" asp-action="Index">Trang quản trị</a>
             }
