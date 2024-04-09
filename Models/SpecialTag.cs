@@ -9,8 +9,8 @@ namespace OnlineShop.Models
     public class SpecialTag
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Nhập tên thẻ sản phẩm")]
-        [Display(Name = "Thẻ sản phẩm")]
+        [Required(ErrorMessage = "Nhập tên nhà sản xuất")]
+        [Display(Name = "Nhà sản xuất")]
         public string Name { get; set; }
     }
 }

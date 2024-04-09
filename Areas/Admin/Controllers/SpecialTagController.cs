@@ -42,7 +42,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 _db.SpecialTags.Add(specialTag);
                 await _db.SaveChangesAsync();
-                TempData["message"] = "Đã thêm thẻ sản phẩm mới.";
+                TempData["message"] = "Đã thêm NSX mới.";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -74,7 +74,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 _db.Update(specialTag);
                 await _db.SaveChangesAsync();
-                TempData["message"] = "Đã cập nhật thẻ sản phẩm thành công.";
+                TempData["message"] = "Đã cập nhật NSX thành công.";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -145,7 +145,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 _db.Remove(specialTags);
                 await _db.SaveChangesAsync();
-                TempData["remove"] = "Đã xóa thẻ sản phẩm.";
+                TempData["remove"] = "Đã xóa NSX.";
                 return RedirectToAction(nameof(Index));
             }
 

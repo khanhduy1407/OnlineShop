@@ -1,15 +1,15 @@
 ﻿@using OnlineShop.Models;
 @model IEnumerable<SpecialTag>
 @{
-    ViewData["Title"] = "Danh sách thẻ";
+    ViewData["Title"] = "Danh sách NSX";
 }
 
 <div class="row">
     <div class="col-6">
-        <h2 class="text-info">Danh sách thẻ</h2>
+        <h2 class="text-info">Danh sách NSX</h2>
     </div>
     <div class="col-6 text-right">
-        <a asp-action="Create" class="ui inverted primary button"><i class="fas fa-plus"></i>&nbsp; Thêm thẻ mới</a>
+        <a asp-action="Create" class="ui inverted primary button"><i class="fas fa-plus"></i>&nbsp; Thêm NSX mới</a>
     </div>
 </div>
 
@@ -22,7 +22,7 @@
     <table class="ui celled table">
         <tr class="table-info">
             <th>Id</th>
-            <th>Tên thẻ sp</th>
+            <th>Nhà sản xuất</th>
             <th></th>
         </tr>
         @foreach (var item in Model)

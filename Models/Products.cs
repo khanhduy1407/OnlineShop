@@ -31,7 +31,7 @@ namespace OnlineShop.Models
         [ForeignKey("ProductTypeId")]
         public virtual ProductTypes ProductTypes { get; set; }
 
-        [Display(Name = "Thẻ")]
+        [Display(Name = "NSX")]
         [Required]
         public int SpecialTagId { get; set; }
         [ForeignKey("SpecialTagId")]
